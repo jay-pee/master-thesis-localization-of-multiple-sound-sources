@@ -4,7 +4,7 @@ With this repository I want to publish my master thesis and progress to improve 
 
 # Licence
 
-The latex template is property of Technische Universität Braunschweig, licence is unknown,
+The latex template is property of Technische Universität Braunschweig. Licence is unknown.
 
 Text, figures and pictures are licenced under ![Creative Commons Attribution-NonCommercial 4.0 International License](https://creativecommons.org/licenses/by-nc/4.0/).
 
