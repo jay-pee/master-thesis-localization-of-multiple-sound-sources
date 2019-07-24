@@ -1,0 +1,536 @@
+%!TEX root = ../IfN-LaTex.tex
+%!TEX spellcheck
+
+\chapter[Adaptive EM-based Multi-source Localization Algorithm]{Adaptive EM-based Multi-source Localization Algorithm using a Wrapped Gaussian Mixture Model}
+\label{chap:Proposed}
+
+In this chapter, the developed multi-source localization method is described.
+The core of this method is a \ac{GMM} which is estimated by an \ac{EM}-algorithm. The main challenges are the addition and deletion of new sources $q$ where each is represented by one Gaussian. Furthermore, the change from processing on a block of static data to the processing of varying real-time data has to be tackled, which is not covered by a classical \ac{EM}-algorithm. \\
+
+\begin{figure}[!h]
+	\centering
+    \input{figures/overview_dev_alg.tikz}
+	\caption{Block diagram as overview of developed multi-source localization algorithm}
+	\label{fig:overview_proposed}
+\end{figure}
+
+% One important feature of the algorithm is the recursive use of the \ac{GMM} parameter. For each new incoming data, the \ac{EM}-algorithm is using the parameter which was trained on the data set before. \\
+In figure \ref{fig:overview_proposed} the overview flow chart of the algorithm is shown. The numbers above of the different parts of the algorithm represent the subsections of this chapter where they are discussed in more detail. At first the incoming data are considered, which are results of different types of localization, in detail addressed in the following chapter \ref{sec:localization}. The values $\vect \phih(b)$ are buffered to get a set of observations for the \ac{EM}-algorithm.\\
+Besides the \ac{DOA} result, the so-called confidence $\vect c(b)$ is introduced, as a measure of likelihood that the \ac{DOA} is correct.
+Then follows the derivation and description how the GMM variables are updated by the  \ac{EM}-algorithm.
+For each observation set, only one EM-Iteration is done, due to the assumption, that incoming data are not changing rapidly, and the EM can adapt in every time step.
+The adopted \ac{GMM} variables from the step before will be reused in the current step. This is a big difference to the Madhu approach (chapter \ref{subsec:madhu_alg}) where in every iteration a full EM-Algorithm has to be done.
+% Here, the change from an ML-Estimation to a MAP-Adaption is described, due to the reason that the algorithm has to handle real-time data instead of a fixed block of observations
+An important fact is that the algorithm is initialized with zero classes, so the first action of the algorithm is to decide if a new class shall be opened, based on the incoming observations. This is done by the 'detection of
+new sources' block.
+As last element of the developed multi-source localization method the deletion of sources are contemplated, which is done with the help of the \ac{TTL}. The output of the multi-source algorithm is given by the full \ac{GMM} $\vect \lambda^\text{out}$, which represents the current scene as a model. After the complete discussion of the basic algorithm, the last section will introduce some further more heuristic adjustments and improvements.
+
+% \todo{introduce pseduo code for the full algorithm as overview in appendix}
+%Here all methods should be described that was developed when writing the thesis. What's the reason for doing it this way? What measurement categories were used? What is the purpose of using different alternatives? How are they compared to each other? What results are to be expected? In general, you should ensure transparency, and you have to substantiate your conclusions and discuss alternatives.
+
+
+% \begin{figure}[!ht]
+% 	\centering
+% 	\includegraphics[width=\textwidth]{figures/bb_processing.png}
+% 	\caption{How the broad band processing works}
+% 	\label{fig:bb_processing}
+% \end{figure}
+
+\section{Localization}
+\label{sec:alg_localization}
+The \ac{DOA} as input data $\phih(b)$ for the multi-source localization are calculated with broadband or sub-band \ac{SRP} method as stated in equation \ref{eq:doa_est_broadband_stft} or \ref{eq:doa_est_freq_stft}.
+In this work the \ac{DS} beamformer and the Capon beamformer with diagonal loading stated in \ref{eq:w_ds} and \ref{eq:p_diag_load_coherence}, respectively, are used in the \ac{SRP} method to calculate the spatial power spectrum $P(l,b,\theta)$.
+% The coherence matrix $\mat J_{xx}$ needed for the \ac{DS} to obtain the beamformer power is calculated with the assumption of homogeneous microphone signals $\vect X(\Omega)$ noted in \ref{eq:coherence_mod}.
+% For the Capon beamformer, this assumption cannot be made in practice due to greater sensitivity for errors of this beamformer.
+% Therefore the coherence matrix is calculated in the classical way as stated in \ref{eq:coherence}.
+The covariance matrix $\mat \Phi_{xx}(l,b)$ will be estimated by a first order \ac{IIR} filter noted in \ref{eq:cross_iir}, which is assumed to be sufficient for estimating the covariance matrix $\mat \Phi_{xx}(l,b) \approx  \mat{\hat{\Phi}}_{xx}(l,b)$.\\
+When using the broadband \ac{SRP}, the \acp{DOA} are buffered over time frames $b$. This buffer can be seen as a sliding window. In this fixed-size buffer of length $N$ the oldest frame will be erased by the newest frame. The buffer can be stated as:
+
+\begin{equation}
+\vect \phih^\text{b}(b) = \big(\phih(b-N+1),\ \phih(b-N+2),\ \cdots,\ \phih(b) \big)^T.
+\label{doa_buffer_broad}
+\end{equation}
+
+When using the frequency \ac{SRP} method, the sliding window is not buffered over time anymore rather than over frequencies. Therefore, only data from one frame at a time are in the buffer:
+
+\begin{equation}
+\vect \phih^\text{s}(b) = \big(\phih(0,b),\ \phih(l,b),\ \cdots,\ \phih(L/2,b) \big)^T.
+\label{doa_buffer_sub}
+ \end{equation}
+
+\section{Confidence}
+\label{sec:confidence}
+A unique feature of the developed algorithm is the use of confidence values as a second input value. This is done because of the nature of the $\arg \max$ function. For this function, it does not matter how high the peak is in absolute numbers or in comparison to the other values. This leads to a loss of information. To illustrate the problem, two examples are depicted in figure \ref{fig:compare_conf}. When looking at subplot \ref{fig:conf_high} the theoretical steered power spectrum for the \ac{SRP-PHAT} method with a \ac{DS} beamformer shown in \ref{fig:beamp_ds} is visible. Furthermore, in the polar plot \ref{fig:polar_conf_high} of the mean power, a maximum for an azimuth angle of approximately $\phih = \ang{120}$ is visible.
+
+\begin{figure}[!ht]
+	\subfloat[Theoretical steered power spectrum visible\label{fig:conf_high}]{%
+		  \def\svgwidth{.48\linewidth}
+		  \scriptsize\input{figures/conf_high.pdf_tex}
+	}
+	\hfill
+	\subfloat[Theoretical steered power spectrum distorted\label{fig:conf_low}]{%
+		  \def\svgwidth{.48\linewidth}
+		  \scriptsize\input{figures/conf_low.pdf_tex}
+	}
+	\caption{Comparison of two different spatial power spectra calculated with Steered response power and a delay \& sum beamformer for real data recorded with a 7 microphone uniform circular array with center microphone}
+	\label{fig:compare_conf}
+\end{figure}
+
+\begin{figure}[!ht]
+	\subfloat[Sufficient maximum height for maximum search\label{fig:polar_conf_high}]{%
+		  \def\svgwidth{0.48\linewidth}
+		  \small\input{figures/polar_conf_high2.pdf_tex}
+	}
+	\hfill
+	\subfloat[Insufficient maximum height for maximum search\label{fig:polarconf_low}]{%
+		  \def\svgwidth{.48\linewidth}
+		  \small\input{figures/polar_conf_low.pdf_tex}
+	}
+	\caption{Polar plots corresponding to figure \ref{fig:compare_conf}. $\phih$ is the direction of arrival estimation with broadband steered response power}
+	\label{fig:compare_polar_conf}
+\end{figure}
+
+On the other hand, when looking at plot \ref{fig:conf_low} the theoretical steered power spectrum totally vanishes. The polar plot in \ref{fig:polarconf_low} is stating the same: no distinct maximum. But in the nature of the $\arg \max$ function, a value has to be picked as \ac{DOA} and here the value would be approximately $\ang{240}$. When feeding both values in our multi-source localization algorithm without the use of confidence both values would have the same impact on the results, and the algorithm would become degraded. \\
+To tackle this problem the confidence value is introduced, which can be seen as a weighting factor for each \ac{DOA} value. To calculate the confidence value, the ratio between the maximum and the minimum value is taken into account. Therefore the Wiener filter has been used as a role model. The Wiener filter is normally installed for optimal noise reduction and accounts for the power of the distorted signal in relation to the noise \cite[Chapter~6.5]{loizou2013speech}.
+% \begin{equation}
+% g = 1-\mu_\text{v}\frac{\hat P_{vv}}{\hat P_{xx}}.
+% \label{eq:conf_wiener}
+% \end{equation}
+In practice, the noise is estimated by the minimum of the signal. On the other hand, the power of the total signal is estimated by the maximum. Figure \ref{fig:conf_1} is depicting this min and max value. However, the noise is underestimated, because the absolute minimum value is taken. To compensate for this $\mu_\text{v}$ is introduced, which results in
+
+\begin{equation}
+c'(l,b)= 1-\mu_\text{v}\frac{\min_\theta P(l,b,\theta) }{\max_\theta P(l,b,\theta)}.
+\label{eq:conf_wiener}
+\end{equation}
+
+In this work $\mu_\text{v}$ is called the confidence sensitivity, because it scales the range of confidence values'.
+\begin{figure}[t]
+	\centering
+    \def\svgwidth{.6\linewidth}
+    \small\input{figures/conf_1.pdf_tex}
+	\caption{Power distribution over azimuth angle. Minimum and maximum values are used for estimating signal and noise power in the confidence calculation.}
+	\label{fig:conf_1}
+\end{figure}
+To get another degree of freedom, the one is also substituted by a tuning parameter, which is called offset $\alpha_\text{o}$. To let this confidence stay between zero and one also when this added parameter is used, an upper and lower limit is introduced. On the basis of \ref{eq:conf_wiener} and the mean power $\overline P^\text{b}(b,\theta)$ in \ref{eq:doa_est_broadband_stft} following is obtained
+
+\begin{equation}
+\begin{split}
+	c(b)=
+	\begin{cases}
+	     0 		  	& \text{for } c'(l,b) < 1 \\
+	     c'(b)  	& \text{for } 0 < c'(l,b) < 1 \\
+	     1		  	& \text{for } 1 < c'(l,b)
+	\end{cases}\\[1em]
+\text{with}\ \ c'(b) = \alpha_\text{o}-\mu_\text{v}\frac{\min_\theta \overline P^\text{b}(b,\theta) }{\max_\theta \overline{P}^\text{b}(b,\theta)}.
+\label{eq:conf_calc_broad}
+\end{split}
+\end{equation}
+
+To calculate the confidences for the sub-band processing, the spatial power spectrum $P(l,b,\theta)$ is used:
+\begin{equation}
+\begin{split}
+	c(l,b)=
+	\begin{cases}
+	     0 		  	& \text{for } c'(l,b) < 1 \\
+	     c'(l,b)  	& \text{for } 0 < c'(l,b) < 1 \\
+	     1		  	& \text{for } 1 < c'(l,b)
+	\end{cases}\\[1em]
+\text{with}\ \ c'(l,b) = \alpha_\text{o}-\mu_\text{v}\frac{\min_\theta P(l,b,\theta) }{\max_\theta P(l,b,\theta)}.
+\label{eq:conf_calc_sub}
+\end{split}
+\end{equation}
+
+To use these values in the algorithm besides the localization results, a sliding window buffer is also introduced for the confidence values:
+
+\begin{equation}
+\vect c^\text{b}(b) = [\ c(b-N+1),\ c(b-N+2),\ \cdots,\ c(b) \ ].
+\label{conf_buffer_broad}
+\end{equation}
+
+For the sub-band \ac{SRP} the buffer is again only used with values of one frame $b$:
+
+\begin{equation}
+\vect c^\text{s}(b) = [\ c(0,b),\ c(l,b),\ \cdots,\ c(L/2,b) \ ].
+\label{conf_buffer_sub}
+\end{equation}
+
+\section{Update of GMM Parameters}
+\label{sec:update}
+
+%One further point to note is, that the variance will not be estimated in the M-Step and rather be stated as a fixed parameter. Removing this degree of freedom yields a more robust algorithm.
+
+The heart of the multi-source localization algorithm is the estimation of the \ac{GMM} variables. The algorithm takes the buffered observations from equation \ref{doa_buffer_broad}  or \ref{doa_buffer_sub}, the confidence value from equation \ref{conf_buffer_broad} or \ref{conf_buffer_sub} and the variables of the \ac{GMM} from the time step before (see figure \ref{fig:overview_proposed}) as input. \\
+For the input data, the origin of the incoming data (sub-band/broadband) is neglected because this has no influence on the further processing. The observations are stated as $\vect{\phih}(b) = \big(\phih_1(b), ... \phih_{N}(b)\big)$ and confidences as $\vect c(b) = \big(c_1(b), ... c_N(b)\big)$, where $N$ is the number of elements in the buffer. Furthermore, the \ac{GMM} variables are summarized in one variable $\vect \lambda(b) = \big(\vect \mu(b), \vect \pi(b), \vect b_\text{TTL}(b)\big)$. The added variable $b_\text{TTL}$ is needed for the deletion of inactive classes and will be explained in chapter \ref{sec:del} in full detail. \\
+% When only one (weighted) Gaussian $k$ is considered, the variables are stated as $\lambda_k(b) = ( \mu_k(b),  \gamma_k(b),  \pi_k(b), \vect b_\text{TTL,k})$.
+The variance is set to a fixed parameter $\sigma^2_\text{const}$ in this work because this gives an increase in robustness and therefore is neglected in this variable set. Because the input values are now time (frame) dependent, the \ac{GMM} parameter are so too. However, in the following the update process is explained for one step only and for convenience the frame index $b$ is neglected. During the algorithm, the \ac{GMM} is in different states and cannot directly be taken as the input for the next \ac{EM} iteration step as in the normal \ac{EM}-algorithm. Therefore a few modified $\vect \lambda$ are introduced. $\vect \lambda^\text{out}$ is the \ac{GMM} after one full processing step is done and can be seen as the output of the algorithm. Furthermore the \ac{GMM} of the previous frame is needed and will be written as $\vect \lambda^\text{old} = \vect \lambda^\text{out}(b-1)$.
+The $\vect \lambda^\text{in}$ comes from the hypothesis test and is used as the input value for the \ac{EM}. It is still the \ac{GMM} parameter set from the time frame before. The unmodified $\vect \lambda$ is the direct output of the EM iteration step. For illustration all different \ac{GMM} parameter states are depicted in \ref{fig:overview_proposed}.\\
+In the first section of this chapter, the M-Step and the E-Step will be derived for wrapped Gaussians in general.
+Then the \ac{EM} iteration step will be updated to use \ac{MAP} adaption rather than \ac{ML} estimation, to handle the varying real-time data. Next, the confidences are integrated, and a floor class is introduced, which lays the basis for the hypothesis test. Finally,
+all steps are wrapped up and integrated into the developed algorithm.
+%This should not end up in deleting the Gaussian or an adaption from the Gaussian to another source.
+%Finally, a floor class is introduced, which should consider the ambiance of noise in the detection results and some other effects.
+
+\subsection{Derivation of the EM-Algorithm for Wrapped Gaussians}
+\label{subsec:EM_for_WGMM}
+At first, a simplified version of the wrapped Gaussian distribution described in \ref{eq:wrapped_dist} is introduced. This can be done under the constraint that $\sigma_k \ll 2\pi$. Therefore Gaussians that are further away have no significant contribution to the \ac{PDF}, which is stated now as
+
+\begin{equation}
+\begin{split}
+\mathcal{N}_\text{w}(\phih_n|\mu_k,\sigma_k)&\approx\frac{1}{\sigma_k\sqrt{2\pi}}\sum^1_{i=-1}e^{-\frac{1}{2}(\frac{\phih_n-\mu_k+2\pi i}{\sigma_k})^2}\\
+\text{with }\ \mathcal{N}_\text{w}(\phih_n|\mu_k,\sigma_k) \in [\ 0,\ 2\pi\ ),
+\end{split}
+\end{equation}
+where index $i$ is now an element of $[-1,\ 0,\ 1]$ and $\mathcal{N}_\text{w}(\phih|\mu,\sigma)$
+limited to values between $0$ and $2\pi$. With equation \ref{eq:gmm} as basis, for the \ac{WGMM} follows
+
+\begin{equation}
+p_{\text{WGMM}}(\hat{\varphi}_n|\vect \mu, \vect \sigma, \vect \pi)= \sum^K_{k=1}\underbrace{\pi_k\mathcal{N}_\text{w}(\hat{\varphi}_n|\mu_k,\sigma_k)}_{p_k(\phih_n)},
+\label{eq:wgmm}
+\end{equation}
+
+where the class PDF $p_k(\phih)$ is introduced. Because the sum of a wrapped Gaussian has only a few elements, this could also be written out as
+
+\begin{equation}
+\begin{split}
+p_k(\phih_n) &= \pi_k\big(\mathcal{N}(\phih_n|\mu_k-2\pi,\sigma_k) + \mathcal{N}(\phih_n|\mu_k,\sigma_k) + \mathcal{N}(\phih_n|\mu_k+2\pi,\sigma_k)\big)\\
+ &= p^-_k(\phih_n) + p^0_k(\phih_n) + p^+_k(\phih_n),
+\end{split}
+\end{equation}
+
+where $p^{(\cdot)}_k(\phih)$ are the \acp{PDF} for the corresponding (shifted) Gaussians. For illustration, the elements of one wrapped Gaussian class are shown in figure \ref{fig:wrapped_gaussians} over an extended value range.
+
+\begin{figure}[!ht]
+	\centering
+    \def\svgwidth{1\linewidth}
+    \scriptsize\input{figures/wgmm.pdf_tex}
+	\caption{The elements of a wrapped Gaussian for a class with $\mu_k=0$. The black dotted line is the sum of the three others. Only the 'unshifted' and the right-shifted elements have an effect on the value range $\ang{0}$ till $\ang{360}$.}
+	\label{fig:wrapped_gaussians}
+\end{figure}
+
+% Next, step is now the derivation of the estimation of the \ac{GMM} parameter.
+% In the E-step the estimation of the latent variables, the responsibilities $\gamma$ are done in the same way as in  equation \ref{eq:em_gamma}. The weighted probabilities $p_k(\phih_n)$ that $\phih_n$ is element of class $k$ is divided by the probabilities that $\phih_n$ is element of the whole \ac{GMM} $p(\phih_n)_\text{WGMM}$. For the different classes are wrapped Gaussians (equation \ref{eq:wrapped_dist}) used now:
+
+
+The estimation of the \ac{GMM} variables is done similarly to equation \ref{eq:log_ML} by maximizing the log-likelihood for all variables. The difference is that a wrapped \ac{GMM} is used instead. This can be written as:
+
+\begin{equation}
+\ln p_\text{WGMM}(\vect \phih |\vect \mu, \vect \sigma, \vect \pi) = \sum^{N}_{n=1}\ln\Bigg\{\sum^K_{k=1}\pi_k\mathcal{N}_\text{w}(\phih_n|\mu_k,\sigma_k)\Bigg\} \rightarrow \max.
+\label{eq:log_ML_wrapped}
+\end{equation}
+
+
+The maximization for the mean of the class $k$ is done by taking the partial derivative of equation \ref{eq:log_ML_wrapped} with respect to $\mu_k$ and set it to zero.
+
+\begin{equation}
+\begin{split}
+\frac{\partial\ln p_\text{WGMM}(\vect \phih |\vect \mu, \vect \sigma, \vect \pi)}{\partial\mu_k}&= \frac{1}{\sqrt{2\pi\sigma^2_k}} \sum^{N}_{n=1} \frac{\sum^1_{i=1}\pi_k\exp(\frac{1}{2\sigma^2}(\phih_n-\mu_k+i2\pi)^2)\frac{\phih_n-\mu_k+i2\pi}{\sigma^2_k}}{p_\text{WGMM}(\phih_n|\vect \mu, \vect \sigma, \vect \pi)}\\
+&= 0.
+\end{split}
+\end{equation}
+
+When solving \ref{eq:log_ML_wrapped} for $\mu_k$ and use \ref{eq:em_gamma_wrapped} following is obtained
+
+\begin{equation}
+\begin{split}
+\mu_k=\frac{\sum^{N}_{n=1}\gamma_{kn}(\phih_n-\gamma^-_{kn}2\pi+\gamma^+_{kn}2\pi)}{\sum^{N}_{n=1}\gamma_{kn}}\\[1em]
+\text{with }\ \gamma_{kn}=\frac{p_k(\phih_n)}{p_\text{WGMM}(\phih_n)}, \gamma^+_{kn}=\frac{p^+_k(\phih_n)}{p_k(\phih_n)}, \gamma^-_{kn}=\frac{p^-_k(\phih_n)}{p_k(\phih_n)},
+\label{eq:mu_em_wrapped}
+\end{split}
+\end{equation}
+
+where the inner responsibilities $\gamma^-_{kn}$ and $\gamma^+_{kn}$ are introduced. They represent responsibilities inside a wrapped Gaussian, if an observation $\phih_n$ is assigned to a left shifted Gaussian \ac{PDF} $p^-_k(\phih_n)$ or the right shifted Gaussian \ac{PDF} $p^+_k(\phih_n)$. When an observation is assigned to either of them, the \ac{DOA} $\phih_n$ is shifted by $2\pi$ as stated in equation \ref{eq:mu_em_wrapped}. The inner responsibilities are calculated with the responsibilities $\gamma^{kn}$ in the E-step.
+It can be seen as a cyclic correction to the center \ac{PDF} $p^0_k(\phih_n)$.
+Furthermore, the responsibilities for the E-Step are yielded as byproduct:
+\begin{equation}
+\gamma_{kn} = \frac{p_k(\phih_n)}{p_\text{WGMM}(\phih_n)}= \frac{\pi_k \mathcal{N}_\text{w}(\phih_n|\mu_k,\sigma_k)}{\sum^K_{j=1} \pi_j\mathcal{N}_\text{w}(\phih_n|\mu_j,\sigma_j)} .
+\label{eq:em_gamma_wrapped}
+\end{equation}
+
+When summarizing the cyclic correction with the \ac{DOA} $\phih$ the following can be written
+
+\begin{equation}
+\begin{split}
+\mu_k=\frac{\sum^{N}_{n=1}\gamma_{kn}\phih_{\text{cor},n}}{\sum^N_{n=1}\gamma_{kn}}\\[1em]
+\text{with }\ \phih_{\text{cor},n} = \phih_n-\gamma^-_{kn}2\pi+\gamma^+_{kn}2\pi,
+\end{split}
+\end{equation}
+where $\phih_{\text{cor},n}$ is the corrected observation. In this stated the obvious similarity to the mean calculation with a normal \ac{GMM} (equation \ref{eq:mu_em}) is evident.\\
+Because in this work the variance of the \ac{GMM} classes is taken as a constant parameter $\sigma^2_\text{const}$, the derivation is neglected. For the mixing coefficients $\pi$ the calculation is staying the same as stated in equation \ref{eq:pi_em}.
+
+
+
+\subsection{MAP Adaption for the EM-Algorithm}
+Incoming data are changing with every frame $b$. Therefore an adaption is integrated, that also considers past values. For this problem, the MAP adaption can be used. Here the log-likelihood is not maximized anymore (equation \ref{eq:log_ML_wrapped}), rather the a posteriori probability is used. With the Bayes' theorem this probability can be stated as:
+
+\begin{equation}
+p(\vect \mu, \vect \sigma, \vect \pi|\vect \phih) = \frac{p(\vect \phih|\vect \mu, \vect \sigma, \vect \pi)p(\vect \mu, \vect \sigma, \vect \pi)}{p(\vect \phih)}.
+\label{eq:bayes}
+\end{equation}
+
+Out of \ref{eq:bayes} the problem statement is concluded for the (over $N$ observations) joint log a posteriori probability:
+
+\begin{equation}
+\ln p(\vect \mu, \vect \sigma, \vect \pi|\vect \phih) = \sum^{N}_{n=1} \ln p(\phih_n|\vect \mu, \vect \sigma, \vect \pi)+ \ln p(\vect \mu, \vect \sigma, \vect \pi)- \sum^{N}_{n=1} \ln p(\phih_n) \rightarrow \max.
+\label{eq:problem_statement_MAP}
+\end{equation}
+
+When maximizing this function with respect to $\mu_k$, by setting the partial derivation of equation \ref{eq:problem_statement_MAP} to zero, following is obtained:
+
+\begin{equation}
+\frac{\partial}{\partial\mu_k} \sum^{N}_{n=1}\ln p(\phih_n|\vect \mu)+ \frac{\partial}{\partial\mu_k} \ln p(\vect \mu) = 0.
+\label{eq:deriv_MAP}
+\end{equation}
+
+For convenience the dependencies $\vect \sigma$ and $\vect \pi$ in the \acp{PDF} are neglected. The probability $p(\phih_n)$ vanishes because it is independent of $\mu_k$. The log-likelihood $p(\phih|\vect \mu)$ is already known from \ref{eq:gmm}. The a priori probability $p(\vect \mu)$ can be stated in many ways. In this work it is assumed as a $k$ dimensional Gaussian probability density function under the assumption that the means are uncorrelated to each other:
+
+\begin{equation}
+\begin{split}
+p(\vect \mu) &= \prod_{k=1}^K\mathcal{N}(\mu_k|\oast\mu_k,\oast\sigma_k)\\
+% \exp(\frac{1}{2\oast\sigma_k^2}(\mu_k -\oast\mu_k))\\
+			 &= \prod_{k=1}^K p(\mu_k),
+\end{split}
+\label{eq:p_a_priori}
+\end{equation}
+
+The mean $\oast\mu_k$ and $\oast\sigma_k$ are the a priori information. The $K$ \acp{PDF} $p(\mu_k)$ are the marginal distributions of $p(\vect \mu)$.  When inserting both equations \ref{eq:gmm}, \ref{eq:p_a_priori} in \ref{eq:deriv_MAP} one obtains
+
+\begin{equation}
+\begin{split}
+0 &= \frac{\partial}{\partial\mu_k} \sum^{N}_{n=1}\ln p(\phih_n|\vect \mu)+ \frac{\partial}{\partial\mu_k} \ln \prod_{k'=1}^K p(\mu_{k'}) \\
+&= \frac{\partial}{\partial\mu_k} \sum^{N}_{n=1}\ln p(\phih_n|\vect \mu)+ \frac{\partial}{\partial\mu_k} \sum_{{k'}=1}^K \ln p(\mu_{k'}) \\
+&= \sum^{N}_{n=1} \frac{1}{p(\phih_n|\vect \mu)}\frac{\partial}{\partial\mu_k} p(\phih_n|\vect \mu) + \frac{1}{p(\mu_k)}\frac{\partial}{\partial\mu_k} p(\mu_k) \\
+&= \sum^{N}_{n=1} \underbrace{\frac{p(\phih_n|\vect \mu_k)}{p(\phih_n|\vect \mu)}}_{\gamma_{kn}} \frac{1}{\sigma^2_k}(\phih_n-\mu_k) - \frac{1}{\oast \sigma^2} (\mu_k-\oast \mu_k) .
+\end{split}
+\end{equation}
+
+When solving for $\mu_k$, follows
+
+\begin{equation}
+\begin{split}
+\mu_k &= \frac{\frac{\sigma^2_k}{\oast\sigma^2_k}\oast \mu_k+\sum^N_{n=1}\gamma_{kn}\phih_n}{\frac{\sigma^2_k}{\oast\sigma^2_k}+\sum^N_{n=1}\gamma_{kn}}\\
+&=\frac{\beta\ \cdot \oast\mu_k+\sum^N_{n=1}\gamma_{kn}\phih_n}{\beta+\sum^N_{n=1}\gamma_{kn}}.
+\label{eq:mu_MAP}
+\end{split}
+\end{equation}
+
+
+% \begin{equation}
+% \sigma_k = \frac{1}{\beta+N_k}(\beta\cdot\sigma_k^{\text{old}}+\sum^N_{n=1}(\phih_n-\mu^_k)^2)
+% \end{equation}
+where $\beta$ is the ratio between variance $\sigma^2_k$ and a priori variance $\oast \sigma^2_k$.
+In this work $\beta$ is called the MAP-adaption parameter. The parameter can set how fast the \ac{GMM} shall adopted to new observation positions. When the MAP-adaption parameter $\beta = 0$ the MAP-adaption reduces to a \ac{ML} estimation. The mixing coefficient $\pi_k$ stays the same as stated in \ref{eq:pi_em}. \cite{279278}
+
+
+\subsection{Integration of Confidences in the Parameter Update}
+The heuristic integration of confidence was developed over time. In the beginning, a threshold was incorporated to make a hard decision if a localization result should be considered in the \ac{EM}-algorithm. The results could further be improved when taking the \ac{EM}-algorithm as a role model and making soft decisions. Therefore the confidences were incorporated in the M-step. They can be seen as another responsibility but global, independent from classes $k$. When restating the estimation of the mean, following is obtained
+
+\begin{equation}
+\mu_k^\text{c} = \frac{\sum^N_{n=1}\gamma_{kn}c_n \phih_n}{\sum^N_{n=1}\gamma_{kn}c_n}.
+\label{eq:mu_em_conf}
+\end{equation}
+
+For illustration, in case the confidence is low for observation $\phih_n$, the value is not accounted for in the estimation. \\
+The mixing coefficients from equation \ref{eq:pi_em} shall also be rewritten as
+
+\begin{equation}
+\pi_k^\text{c} = \frac{\sum^N_{n=1}\gamma_{kn}c_n}{\sum_{n=1}^{N} c_n}
+\label{eq:pi_conf}.
+\end{equation}
+
+Like in \ref{eq:mu_em_conf} the responsibilities for observations with low confidences are not accounted for in the estimation of the mixing coefficients.
+
+\subsection{Adding a Floor Class to the GMM}
+\label{subsec:floor}
+The localization results can sometimes be degraded or totally unusable because of the absence of desired signals. This can only be impacting a few bins $k$ in the sub-band processing but also all the frames of localization results in the broadband processing. One measure to prevent this wrong localization results is to incorporate the confidence discussed in chapter \ref{sec:confidence}. Another measure is to introduce a floor class to the \ac{GMM}, which is stated as an uniform distribution. This floor class can also handle another. This floor class can also handle another problem. If new sources arise and are not yet detected by the algorithm, the current classes of the \ac{GMM} try to integrate these observations in the system. This occurrence is not desirable. Another reason is the spatial aliasing discussed in chapter \ref{subsec:pattern_aliasing}, where the confidence will give back a high value, but the localization result is not in the direction of the speaker due to the aliasing. With the introduction of the floor class, this incidence can be cushioned by the algorithm. Furthermore the floor class is also used in the new source detection (Chapter \ref{sec:hyp_test}). For illustration how the floor class influences the responsibilities an example \ac{GMM} is shown in figure \ref{fig:noise_1}. In \ref{fig:noise_1}b the responsibilities for $p_1(\phih)$ and $p_2(\phih)$
+are decreasing when observations $\phih$ are far away from the mean of these classes (in, e.g. between $\ang{270}$ to $\ang{360}$). Therefore they have no impact on the maximization step of the \ac{EM}-algorithm. Figure \ref{fig:noise_1} may be compared to figure \ref{fig:EM_1} where this floor is absent, and thus the responsibilities at least of one class are always high.
+\begin{figure}[!ht]{}
+	\centering
+	\def\svgwidth{\linewidth}
+	\footnotesize\input{figures/noise_1.pdf_tex}
+	\caption{With the introduction of the floor class (black), the responsibilities for observations spatially far away from the sources are reduced. Therefore localizations due to aliasing or noise which are far off have less impact in the parameter update (M-step) of the expectation-maximization algorithm}
+	\label{fig:noise_1}
+\end{figure}
+Theoretically, the wrapped \ac{GMM} with floor class should be stated now.
+However, in practice this class has only impact on the calculation of the responsibilities. For convenience the floor class is only added in the following equation. It is not necessary to update this class, it shall have a constant parameter $p_{\text{floor}}$:
+
+\begin{equation}
+\gamma_{kn} = \frac{p_k(\phih_n)}{p_\text{WGMM}(\phih_n| \mu_k,  \sigma_k,  \pi_k)+p_{\text{floor}}}.
+\label{eq:em_gamma_wrapped_floor}
+\end{equation}
+
+When adding this class the mixing coefficient $\pi_k$ of the other classes has to be reduced. However, because the floor class is static and therefore has not to be re-estimated, there is no significant impact when the mixing coefficients are not renormalized. This renormalization is neglected in practices.
+
+\subsection{Integration of the Modified EM-Algorithm}
+
+The previous sections are now brought together and are integrated into the the developed multi-source localization algorithm. When looking at \ref{fig:overview_proposed} the inputs are the localization results $\vect \phih$, the confidences $\vect c$ and the old \ac{GMM} variables $\vect \lambda^\text{in}= (\vect \mu^\text{in}, \vect \pi^\text{in}, \vect b_\text{TTL}^\text{in})$ coming from the hypothesis test.
+First, the responsibilities are calculated with the floor class as stated in \ref{eq:em_gamma_wrapped_floor} (E-step), which can be written as
+
+\begin{equation}
+\begin{split}
+\gamma_{kn} &= \frac{p_k(\phih_n)}{p_\text{WGMM}(\phih_n| \lambda^\text{in})+p_{\text{floor}}}\\
+&= \frac{\pi_k \mathcal{N}_\text{w}(\phih_n|\mu^\text{in}_k,\sigma_\text{const})}{\sum^K_{j=1} \pi_j\mathcal{N}_\text{w}(\phih_n|\mu^\text{in}_j,\sigma_\text{const})+p_{\text{floor}}}
+\end{split}.
+\label{eq:gamma_final}
+\end{equation}
+When all responsibilities for every observation $n$ and class $k$ are calculated, the M-Step follows. For the mean calculation the derivation for wrapped Gaussian (equation \ref{eq:mu_em_wrapped}), with MAP adaption (equation \ref{eq:mu_MAP}) and confidence integration (equation \ref{eq:mu_em_conf}) are combined, which can be stated as
+
+\begin{equation}
+\begin{split}
+\mu_k &= \frac{\beta\cdot\mu_k^{\text{in}}+\sum^{N}_{n=1}\gamma_{kn}c_n(\phih_n-\gamma^-_{kn}2\pi+\gamma^+_{kn}2\pi)}{\beta+\sum^{N}_{n=1}\gamma_{kn}c_n}\\
+&= \frac{\beta\cdot\mu_k^{\text{in}}+\sum^{N}_{n=1}\gamma_{kn}c_n\phih_{\text{cor},n}}{\beta+\sum^{N}_{n=1}\gamma_{kn}c_n}\\[1em]
+\text{with }\ \gamma^+_{kn}&=
+\frac{p^+_k(\phih_n)}{p_k(\phih_n)}=
+\frac{\mathcal{N}(\phih_n|\mu_k^\text{in}+2\pi,\sigma_\text{const})}{\mathcal{N}_\text{w}(\phih_n|\mu_k^\text{in},\sigma_\text{const})}, \\
+\gamma^-_{kn}&=\frac{p^-_k(\phih_n)}{p_k(\phih_n)}=
+\frac{\mathcal{N}(\phih_n|\mu_k^\text{in}-2\pi,\sigma_\text{const})}{\mathcal{N}_\text{w}(\phih_n|\mu_k^\text{in},\sigma_\text{const})}.
+\label{eq:mu_final}
+\end{split}
+\end{equation}
+
+For the a priori information $\oast \mu_k$ and $\oast \sigma_k$ in the MAP adaption the values from the frame before are taken, which are represented by $\sigma_k^\text{in}$ and $\mu_k^\text{in}$.
+The weights $\pi_k$ are also updated like it is stated in equation \ref{eq:pi_conf}:
+
+\begin{equation}
+\pi_k = \frac{\sum^N_{n=1}\gamma_{kn}c_n}{\sum_{n=1}^{N} c_n}.
+\end{equation}
+
+After this update is done, the \ac{GMM} parameter set $\vect \lambda = (\vect \mu, \vect \pi, \vect b_\text{TTL}^\text{in})$ is passed to the inactive class deletion.
+
+\section{Increasing the number of classes}
+\label{sec:hyp_test}
+As stated before, the \ac{GMM} is initialized with zero sources $K=0$. Therefore before anything happens, a new class must be added to the \ac{GMM}. This is happening with a so-called \emph{hypothesis test}. As seen in figure \ref{fig:overview_proposed}, the hypothesis test regards for the detected observations $\vect \phih$ and their confidences $\vect c$. On the other hand, it needs the \ac{GMM} parameter $\vect \lambda^\text{old}$ of the step before. The hypothesis test is done by calculating the responsibilities of the floor class, introduced in chapter \ref{subsec:floor} and stated as
+
+\begin{equation}
+\gamma_{\text{floor},n} = \frac{p_\text{floor}}{p_\text{WGMM}(\phih_n)+p_\text{floor}}.
+\end{equation}
+
+When summing up $\gamma_{\text{floor},n}$ over observations $N$
+the number of observations represented by the floor class in total is gained, which is compared to a threshold. When the sum is greater than this threshold, a new class is added to the \ac{GMM}. This can be interpreted such, that the current \ac{GMM} system is not able to represent all observations and therefore many are assigned to the floor class.  Mathematically this is stated as
+
+\begin{equation}
+\lambda^\text{in} =
+	\begin{cases}
+	     \vect  \lambda^{\text{old}} 		  				& \text{for } \sum_{n=1}^N \gamma_{\text{floor},n} < \Gamma_\text{class}^\text{add}\\
+	     \vect \lambda^{ \text{old}}\cup \lambda^\text{add}	& \text{for } \sum_{n=1}^N \gamma_{\text{floor},n} \geq \Gamma_\text{class}^\text{add}\\
+	\end{cases},
+\end{equation}
+
+
+where $\Gamma_\text{class}^\text{add}$ is the threshold and $\lambda^\text{add} = (\mu^\text{add},\pi^\text{add}, b_{\text{TTL}}^\text{add})$ is the class that is added to the \ac{GMM}. This class must have initial values for mean $\mu^\text{add}$ and mixing coefficient $\pi^\text{add}$. For the initial mean calculation equation \ref{eq:mu_em_conf} with $\gamma_{\text{floor},n}$ as its responsibilities is utilized:
+
+\begin{equation}
+\mu^\text{add} = \frac{\sum^N_{n=1}\gamma_{\text{floor,}n}c_n \phih_n}{\sum^N_{n=1}\gamma_{\text{floor,}n}c_n}.
+\end{equation}
+
+The initial values for mixing coefficients $\pi^\text{add}$ and the initial \ac{TTL} $b_{\text{TTL}}^\text{add}$ are data-independent and are used as tuning parameter.
+For the mixing coefficients $\pi^\text{add}$ and the initial \ac{TTL} $b_{\text{TTL}}^\text{add}$ the value is set constant. Further information over the \ac{TTL} are given in chapter \ref{sec:del}. Due to the new class in the \ac{GMM} the constraint for the mixing coefficients (equation \ref{eq:pi_constraint}) will be violated. This could be healed by re-normalizing all mixing coefficients. However, the violation of this constraint can be neglected, because there is only a small impact for the following \ac{EM}-algorithm, and after the first \ac{EM} iteration is done, the mixing coefficients will be naturally normalized so that the constraint is fulfilled again.
+
+% \begin{figure}[!ht]
+% 	\centering
+% 	% \includesvg[width=0.45\textwidth]{figures/EM_ANTI_1.svg}
+% 	\caption{Anti Hypothis}
+% 	\label{fig:anti_hyp}
+% \end{figure}
+
+\section{Deleting of Inactive Sources}
+\label{sec:del}
+Now the addition of new sources is handled, the deleting of inactive sources has to be tackled as a separate case. The \ac{TTL} is used in packet-switched networks, where it prevents packages for an infinitely long time to try to reach the receiving server, which may lead to a blocked channel. It is also used in Madhu's work in a similar way \cite[Chapter~4.3]{madhu2010acoustic}. The deleting of inactive sources collects the \ac{GMM} variables $\vect \lambda$ of the \ac{EM} update and returns the 'shrunken' \ac{GMM} variable set $\vect \lambda^{\text{out}}$ (see figure \ref{fig:overview_proposed}). The \ac{TTL} is used to erase classes of sources, that are inactive for a certain time.
+% This is done because inactive classes can interfere with active classes, what is leading to corruption of the multi-source algorithm.
+With the \ac{TTL} the \ac{GMM} parameter set may be written now $\lambda = [\mu, \pi, b_\text{TTL}]$. The function of the \ac{TTL} is straightforward. The \ac{TTL} is increasing when its class is excited, which means that observations are represented by this class. The \text{TTL} decreases when its class is not excited. The activity of a class is measured in two different ways for broadband and sub-band processing. When using the developed broadband multi-source localization algorithm the current responsibility $\gamma_{kN}$ is taken to compare with the threshold $\Gamma^\text{TTL}_\text{thres}$. The \ac{TTL} update can be stated as,
+
+\begin{equation}
+b_{\text{TTL},k}^{\text{out,b}} =
+	\begin{cases}
+	    b_{\text{TTL},k} + b_{\text{TTL}}^\text{inc}	  				& \text{for } \gamma_{kN} > \Gamma^\text{TTL}_\text{thres}\\
+	    b_{\text{TTL},k} - 1 	& \text{for } \gamma_{kN} < \Gamma^\text{TTL}_\text{thres}\\
+	\end{cases}.
+	\label{eq:ttl_add}
+\end{equation}
+
+$\Gamma^\text{TTL}_\text{thres}$ is the threshold parameter and $ b_{\text{TTL}}^\text{inc}$ is a fixed parameter to adjust, how fast the \ac{TTL} should increase. When doing sub-band processing, the mixing coefficient $\pi_k$ can be used because all values are coming from the current frame. The \ac{TTL} update can be stated as,
+
+\begin{equation}
+b_{\text{TTL},k}^{\text{out,s}} =
+	\begin{cases}
+	    b_{\text{TTL},k} + b_{\text{TTL}}^\text{inc}	  				& \text{for } \pi_k > \Gamma^\text{TTL}_\text{thres}\\
+	    b_{\text{TTL},k} - 1 	& \text{for } \pi_k < \Gamma^\text{TTL}_\text{thres}\\
+	\end{cases},
+	\label{eq:ttl_add_sub}
+\end{equation}
+
+After the \ac{TTL} update the erasing constraint is checked. Now the \ac{TTL} is considered again as independent from broadband or sub-band processing and states as $b_{\text{TTL},k}^{\text{out}}$. When \ac{TTL} is becoming smaller than zero, the class is removed from the \ac{GMM}, which can be written as,
+
+\begin{equation}
+\lambda_k^{\text{out}} =
+	\begin{cases}
+	    [\ ] 	& \text{for } b_{\text{TTL},k}^{\text{out}} < 0\\
+	    \lambda_k	& \text{for } b_{\text{TTL},k}^{\text{out}} > 0\\
+	\end{cases}\\[1em],
+\end{equation}
+
+where the deletion of the class is expressed by replacing the Gaussian class $k$ $\lambda_k$ by an empty operator $[\ ]$.\\
+As a final mechanism of the \ac{TTL} the $\Gamma_\text{TTL}^\text{max}$ threshold is introduced, which set a upper limit for \ac{TTL}. Therefore one class will be always forgetting after a fixed time when this class is not active again.
+
+\section{Adjustments to the Basic Algorithm}
+
+In some scenarios the basic version of the developed multi-source algorithm has some shortcomings which leads to errors in the classifications. In this section the heuristic extensions for the basic algorithm are discussed to improve the classification performance.
+
+\subsection{Minimum Threshold for Mixing Coefficients}
+The mixing coefficients $\pi$ can go to zero when no observations are assigned to the respective class. This would lead to a class that will never get new observations assigned to in the E-Step, which would result in the death of this class over time. However, after a short speech pause it is desirable that the mixing coefficients rise again. This can be achieved by introducing a lower bound $\Gamma^\text{min}_\text{mix}$ for all mixing coefficients. When this is reached the constraint \ref{eq:pi_constraint} is violated. However, it is tolerated in practice, because $\Gamma^\text{min}_\text{mix}$ is set so low that the violation is marginal.
+
+\subsection{Handling Overlapping Sources}
+\label{subsec:overlap}
+
+Another challenge for the developed multi-source localization algorithm is the overlapping of sources. This may happen if two speakers are standing close together or when they are passing by one another. The first scenario cannot be solved easily, because the two sources will cover each other and will therefore be classified as one source in the E-step. However, if this overlapping is only a time limited event, as described in the second scenario, this can be handled by a simple heuristic approach under a few assumptions:\\
+The first assumption is that one source it not moving during the overlap. In the most real world scenarios this is acceptable because most crossovers do not occur between two moving sources. They are often happening between a human speaker and e.g. a radio, television or speaker box. The second assumption is that the fixed source is less active, therefore has less observations and a lower mixing coefficient. One reason is that fixed speaker boxes are mostly further away from the array than a human (mobile) speaker and therefore have a lower amplitude and a more diffuse noise field when the signal arrives at the array, which leads to less observations in the direction of the fixed speaker box. With this assumptions the overlap distance threshold $\Gamma_\text{overlap}$ is defined. If two classes are closer together than this threshold, that one of them will be selected, that was more active in the last $B_\text{overlap}$ frames. This is done by accumulating the mixing coefficients of these sources and comparing them. The source which has less activity will be set to the minimum mixing coefficient value $\pi_\text{min}$. Therefore it will not get much observation responsibilities in the next frame. This leads to a freezing of the source at the current position. If the distance of the classes is greater than the overlap distance threshold, the mixing coefficient can adapt normally again. The class freezing method is integrated after the erasing of inactive sources.
+
+% \subsection{Sliding Window}
+\subsection{Handling Aliasing in the Sub-band Algorithms}
+
+Aliasing was discussed in chapter \ref{subsec:pattern_aliasing}, which has a major impact on the developed sub-band SRP algorithm. This can be seen when looking at figure \ref{fig:al_cor_1}, where the localization results for all sub-bands are shown over time. The confidences mentioned in chapter \ref{sec:confidence} are color coded in this plot. In this scenario there is one speaker, that moves around the microphone array for one circle. It is visible that besides the main lobe, which represents the actual speaker, also localization results of the grating lobes are detected by the sub-band SRP. The results have also a quite high confidence which can lead to false detections. The aliasing problem can be tackled by utilizing the known class positions from the frame before. Then, the positions of the aliasing can be predicted in every frequency bin and corrected to the original value, like it is done within the wrapped Gaussians. However, hard decisions are made here to decide if an observation is moved to the main lobe. In the following this method will be described in more detail.\\
+
+\begin{figure}[!ht]
+	\subfloat[Before aliasing correction\label{fig:al_cor_1}]{%
+		  \def\svgwidth{.48\linewidth}
+		  \scriptsize\input{figures/aliasing_before.pdf_tex}
+	}
+	\hfill
+	\subfloat[After aliasing correction\label{fig:al_cor_2}]{%
+		  \def\svgwidth{.48\linewidth}
+		  \scriptsize\input{figures/aliasing_after.pdf_tex}
+	}
+	\caption{Confidence and estimated direction of arrival over time. Confidence is color coded. Comparison before and after aliasing correction. In the depicted scenario one person is walking around the microphone array for one circle. The Capon beamformer is used.}
+	\label{fig:al_cor}
+\end{figure}
+
+First the knowledge of all grating lobes for every frequency and \ac{DOA} has to be obtained. To this end the theoretical steered power spectrum calculation in equation \ref{eq:p_theory} is used. All local maximum positions, besides the one at the \ac{DOA} that have sufficient prominences are gathered in a list $\vect \varphi^\text{al}(\phih,l) = (\varphi^\text{al}_1,...)^T$. In a next step the means for every class that have a mixing coefficient which is higher than the minimal threshold  $\Gamma^\text{min}_\text{mix}$ will be taken as an input to obtain the grating lobe positions at every frequency bin. Then the localization results $\vect \phih$ are compared to the list of grating lobes. If the localization result has a closer distance to the grating lobe maximum position than the aliasing distance threshold $\Gamma_\text{al}$ the observation will be corrected to the mean value of the Gaussian class. To illustrate the algorithm the pseudo code is shown in algorithm \ref{ap:aliasing_alg}. In figure \ref{fig:al_cor_2} the input values that are used by the EM-update after the aliasing correction are shown.
+
+\begin{algorithm}[H]
+\SetKwInOut{Input}{Input}\SetKwInOut{Output}{Output}
+\Input{Observations $\vect \phih$, Grating lobe maximum positions $\vect \phi^\text{al}(\phih,l)$, GMM mean $\vect \mu$, GMM mixing coefficients $\vect \pi$ }
+\Output{Aliasing corrected observations $\vect \phih_\text{cor}^\text{al}$}
+$N_f$ is the number of unsymmetrical frequency bins of the \ac{STFT}\;
+$K$ is the number of classes in the GMM\;
+\For{$n = 0:N_f$}
+{
+  \For{$k = 1:K$}
+  {
+    \If{ $\pi_k > \Gamma^\textnormal{min}_\textnormal{mix}$}
+    {
+      CurrentLobePositions $= \phi^\text{al}(\mu_k,n)$ \;
+      \For{LobePosition \text{in} CurrentLobePositions}
+      {
+        \If{ $| LobePosition  -\ \phih_n| < \Gamma_\textnormal{al}$}
+        {
+          $\phih_n = \mu_k$\;
+        }
+      }
+    }
+  }
+}
+$\vect \phih_\text{cor}^\text{al} = \vect \phih$\;
+
+% \captionof{figure}{Pseudo code for shifting of the aliasing observations to the main lobe}
+\caption{Pseudo code for the aliasing correction of the observations}
+\label{ap:aliasing_alg}
+\end{algorithm}

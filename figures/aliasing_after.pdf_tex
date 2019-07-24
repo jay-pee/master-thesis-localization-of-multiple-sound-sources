@@ -1,0 +1,76 @@
+%% Creator: Inkscape inkscape 0.92.2, www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'aliasing_after.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%%
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{345bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,0.86956522)%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{aliasing_after.pdf}}%
+    \put(0.46395226,0.01600733){\makebox(0,0)[b]{\smash{Time $t$ [s]}}}%
+    \put(0.12083597,0.08571754){\makebox(0,0)[rb]{\smash{0}}}%
+    \put(0.12083597,0.26289146){\makebox(0,0)[rb]{\smash{90}}}%
+    \put(0.12083597,0.44006537){\makebox(0,0)[rb]{\smash{180}}}%
+    \put(0.12083597,0.61723928){\makebox(0,0)[rb]{\smash{270}}}%
+    \put(0.12083597,0.79441317){\makebox(0,0)[rb]{\smash{360}}}%
+    \put(0.03779252,0.449631){\rotatebox{90}{\makebox(0,0)[b]{\smash{Azimuth Angle $\hat \varphi$ [$^\circ$]}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{aliasing_after.pdf}}%
+    \put(0.94561857,0.08658711){\makebox(0,0)[rb]{\smash{0}}}%
+    \put(0.98040117,0.22832624){\makebox(0,0)[rb]{\smash{0.2}}}%
+    \put(0.98040117,0.37006537){\makebox(0,0)[rb]{\smash{0.4}}}%
+    \put(0.98040117,0.5118045){\makebox(0,0)[rb]{\smash{0.6}}}%
+    \put(0.98040117,0.6535436){\makebox(0,0)[rb]{\smash{0.8}}}%
+    \put(0.94996639,0.79528273){\makebox(0,0)[rb]{\smash{1}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=3]{aliasing_after.pdf}}%
+    \put(0.12697253,0.05934346){\makebox(0,0)[b]{\smash{0}}}%
+    \put(0.24671361,0.05934346){\makebox(0,0)[b]{\smash{5}}}%
+    \put(0.36645493,0.05934346){\makebox(0,0)[b]{\smash{10}}}%
+    \put(0.4818482,0.05934346){\makebox(0,0)[b]{\smash{15}}}%
+    \put(0.59724167,0.05934346){\makebox(0,0)[b]{\smash{20}}}%
+    \put(0.71263493,0.05934346){\makebox(0,0)[b]{\smash{25}}}%
+    \put(0.8280282,0.05934346){\makebox(0,0)[b]{\smash{30}}}%
+  \end{picture}%
+\endgroup%

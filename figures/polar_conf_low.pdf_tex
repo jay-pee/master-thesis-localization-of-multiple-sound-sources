@@ -1,0 +1,67 @@
+%% Creator: Inkscape inkscape 0.92.2, www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'polar_conf_low.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%% 
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{247.5bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,0.90909091)%
+    \put(0.4343424,0.22201695){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.01502935\unitlength}\raggedright \end{minipage}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{polar_conf_low.pdf}}%
+    \put(0.47672484,0.49935884){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\hat{\varphi}$}}}%
+    \put(0.87960057,0.4521532){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\ang{0}$}}}%
+    \put(0.10362442,0.17303601){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\ang{225}$}}}%
+    \put(0.44421058,0.04905442){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\ang{270}$}}}%
+    \put(0.76370447,0.16191198){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\ang{315}$}}}%
+    \put(0.11265273,0.74608136){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\ang{135}$}}}%
+    \put(0.75822906,0.74378847){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\ang{45}$}}}%
+    \put(0.0132332,0.45956213){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\ang{180}$}}}%
+    \put(0.45613889,0.85545395){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\ang{90}$}}}%
+    \put(0.5107341,0.79980686){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\overline{P}^\text{b} = 1$}}}%
+    \put(0.50442278,0.63953552){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\overline{P}^\text{b} = 0.5$}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{polar_conf_low.pdf}}%
+  \end{picture}%
+\endgroup%

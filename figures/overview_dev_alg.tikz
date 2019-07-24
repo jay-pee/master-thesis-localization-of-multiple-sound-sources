@@ -1,0 +1,67 @@
+\begin{tikzpicture}
+	[
+  	coordinate/.style={minimum height=1em,},
+    rect2/.style={
+    rectangle, 
+    % fill=black!10,
+    draw=black, thick,
+    text width=8em, 
+    minimum height=3em, 
+    text centered
+    },
+	]
+	\matrix (m1) [row sep=1em, column sep=2.7em]
+	{
+		\node[dspnodeopen, align=right]         		   	(phi) {\hspace{1em} $\vect{\hat{\varphi}}(b)$, \ref{sec:alg_localization}};  		&%
+		\node[dspnodefull, xshift=1em]                   (node1) {};          		&
+		\node[coordinate,text width=6em]                  	(emphi) {};				&
+		\node[coordinate]                   () {};          		&
+		\node[coordinate]                  	() {};				\\
+		% \node[coordinate]                  	(m05) {};				\\
+		% %--------------------------------------------------------------------
+		\node[dspnodeopen]         		   	(conf) {\hspace{1em} $\vect c(b)$, \ref{sec:confidence}};  		&%
+		\node[dspnodefull, xshift=-1em]                  	(node2) {};				&
+		\node[coordinate,text width=6em]                  	(emc) {};				&
+		\node[coordinate, minimum height=5em,text width=6em,] 	(del) {};				&
+		\node[dspnodefull]                   (node3) {};          		&
+		\node[dspnodeopen]                  				(out) {$\vect \lambda^\text{out}(b)$};				\\
+
+		% %--------------------------------------------------------------------
+		\node[coordinate]                  	() {};				&
+		\node[rect2, label=above left:{\ref{sec:hyp_test}},text width=7em, minimum height=3em]                  	(hyp) {Detection of \\ new sources};				&
+		\node[coordinate,text width=6em]                  	(emhyp) {};				&
+		\node[coordinate]                  	() {};				&
+		\node[coordinate]  					() {};				\\
+		% %--------------------------------------------------------------------
+		\node[coordinate]                  	() {};				&
+		\node[coordinate]                  	() {};				&
+		\node[dspfilter]                  	(z) {$\z^{-1}$};				&
+		\node[coordinate]                  	() {};				&
+		\node[coordinate]                  	() {};				\\
+		% \node[dspnodeopen]         		   	(m20) {$s_Q[n]$};  		&
+		% \node[dspfilter,minimum width=1.4cm]	(m21) {$h_{mQ}[n]$}; 	&
+		% \node[dspadder]                    	(m22) {};          		&
+		% \node[dspadder]                    	(m23) {};          		&
+		% \node[dspmultiplier]			   	(m24) {};  %dsp/label=belo
+		% \draw [line width=0.25mm] 
+		% ([yshift=8pt]m24.west) -- ([yshift=-8pt]m24.west); 			&
+		% \node[dspnodeopen] 	     		 	(m25) {$x_m[n]$}; 		\\
+
+	\\
+	};
+	\node[dspfilter, inner sep=0.4em, label=above:{\ref{sec:update}}] (em) [fit=(emphi) (emhyp) ,text width=6em ] {GMM Variables Update};
+	\node[dspfilter, inner sep=0.0em, label=above:{\ref{sec:del}}] (delout) [fit=(del), text width=6em ] {Deletion of inactive sources};
+
+	% \node[dspfilter,minimum width=1.4cm]	(m02) {EM Algorithm}; 	&
+	\draw[dspconn] (phi) -- (emphi.west);
+	\draw[dspconn] (conf) -- (emc.west);
+	\draw[dspconn] (hyp) -- node [above]  {$\vect \lambda^\text{in}(b)$} (emhyp.west);
+	\draw[dspconn] (emc) -- node [above]  {$\vect \lambda(b)$} (delout);
+	\draw[dspconn] (node3) |- node [above left]  {$\vect \lambda^\text{out}(b)$} (z);
+	\draw[dspconn] (z) -| node [above right]  {$\vect \lambda^\text{old}(b)$} (hyp);
+	\draw[dspconn] (node1.center) -- ([xshift=1em]hyp.north);
+	\draw[dspconn] (node2.center) -- ([xshift=-1em]hyp.north);
+	\draw[dspconn] (delout) -- (out);
+	% \draw[dspconn] (m02) -- (m12);
+
+	  \end{tikzpicture}

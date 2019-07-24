@@ -1,0 +1,16 @@
+*.bst
+*.toc
+*.gz
+*.xml
+*.out
+*.lot
+*.log
+*.lof
+*.ilg
+*.idx
+*.blg
+*.bcf
+*.bbl
+*.aux
+*.PNG
+*.png

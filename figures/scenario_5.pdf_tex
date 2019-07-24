@@ -1,0 +1,74 @@
+%% Creator: Inkscape inkscape 0.92.2, www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'scenario_5.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%%
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{300bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,0.75)%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{scenario_5.pdf}}%
+    \put(0.14,0.06116675){\makebox(0,0)[b]{\smash{0}}}%
+    \put(0.27408625,0.06116675){\makebox(0,0)[b]{\smash{5}}}%
+    \put(0.40817275,0.06116675){\makebox(0,0)[b]{\smash{10}}}%
+    \put(0.542259,0.06116675){\makebox(0,0)[b]{\smash{15}}}%
+    \put(0.67634525,0.06116675){\makebox(0,0)[b]{\smash{20}}}%
+    \put(0.8104315,0.06116675){\makebox(0,0)[b]{\smash{25}}}%
+    \put(0.944518,0.06116675){\makebox(0,0)[b]{\smash{30}}}%
+    \put(0.5650005,0.01133325){\makebox(0,0)[b]{\smash{Time $t$ [s]}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{scenario_5.pdf}}%
+    \put(0.12666675,0.0915){\makebox(0,0)[rb]{\smash{0}}}%
+    \put(0.12666675,0.24525){\makebox(0,0)[rb]{\smash{90}}}%
+    \put(0.12666675,0.399){\makebox(0,0)[rb]{\smash{180}}}%
+    \put(0.12666675,0.55275){\makebox(0,0)[rb]{\smash{270}}}%
+    \put(0.12666675,0.7065){\makebox(0,0)[rb]{\smash{360}}}%
+    \put(0.03116675,0.41000025){\rotatebox{90}{\makebox(0,0)[b]{\smash{Azimuth Angle [$^{\circ}$]}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=3]{scenario_5.pdf}}%
+    \put(0.2925,0.6653425){\makebox(0,0)[lb]{\smash{\scriptsize{GT1}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=4]{scenario_5.pdf}}%
+    \put(0.2925,0.6246575){\makebox(0,0)[lb]{\smash{\scriptsize{GT2}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=5]{scenario_5.pdf}}%
+  \end{picture}%
+\endgroup%

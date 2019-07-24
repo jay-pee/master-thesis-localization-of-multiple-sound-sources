@@ -1,0 +1,117 @@
+% Author: Rasmus Pank Roulund
+
+\usetikzlibrary{calc,trees,positioning,arrows,chains,shapes.geometric,%
+    decorations.pathreplacing,decorations.pathmorphing,shapes,%
+    matrix,shapes.symbols,fit}
+
+\tikzset{
+>=stealth',
+  rect/.style={
+    rectangle,
+    rounded corners,
+    % fill=black!10,
+    draw=black, very thick,
+    text width=8em,
+    minimum height=3em,
+    text centered
+    },
+  group/.style={
+    rectangle,
+    rounded corners,
+    % fill=black!10,
+    draw=black, dashed, thick,
+    text width=8em,
+    minimum height=3em,
+    text centered
+    },
+  line/.style={draw, thick, ->},
+  line2/.style={draw, thick, -},
+  element/.style={
+    tape,
+    top color=white,
+    bottom color=blue!50!black!60!,
+    minimum width=8em,
+    draw=blue!40!black!90, very thick,
+    text width=10em,
+    minimum height=5em,
+    text centered,
+    on chain},
+  every join/.style={->, thick,shorten >=1pt},
+  decoration={brace},
+  tuborg/.style={decorate},
+  tubnode/.style={midway, right=2pt},
+  coordinate/.style={minimum height=3em,},
+}
+
+\begin{tikzpicture}
+
+
+	\matrix (m1) [row sep=1.2em, column sep=2em]
+	{
+		\node[coordinate] 	(m01) {};          		&
+		\node[rect]       	(m02) {Microphone};     	&
+		\node[coordinate] 	(m03) {};          		\\
+	\\
+		\node[coordinate] 	(m11) {};          		&
+		\node[rect]       	(m12) {STFT};		     	&
+		\node[coordinate] 	(m13) {};          		\\
+	\\
+		\node[coordinate] 	(m21) {};          		&
+		\node[coordinate]	(m22) {};		     	&
+		\node[coordinate] 	(m23) {};          		\\
+	\\
+		\node[rect] 		(m31) {D\&S BF};     		&
+		\node[coordinate]   (m32) {};		     	&
+		\node[rect] 		(m33) {Capon BF};    		\\
+	\\
+		\node[rect] 		(m41) {Sub-band SRP};     		&
+		\node[coordinate]   (m42) {};		     	&
+		\node[rect] 		(m43) {Broadband SRP};    		\\
+	\\
+
+		\node[coordinate] 	(m51) {};          		&
+		\node[coordinate, minimum height=3em,]	(m52) {};		     	&
+		\node[coordinate] 	(m53) {};				\\
+	\\
+		% \node[coordinate] 	(m61) {};          		&
+		% % \node[coordinate, minimum height=3em]	(m62) {};		     	&
+		% \node[coordinate] 	(m63) {};				\\
+	\\
+		\node[rect] 		(m71) {Madhu};     		&
+		\node[rect]		   	(m72) {Dev. sub-band alg.};		     	&
+		\node[rect] 		(m73) {Dev. broadband  alg.};    		\\
+	\\
+		\node[rect]	(m81) {Ground truth generation};     		&
+		\node[rect]		   	(m82) {Evaluation};		     	&
+		\node[coordinate]	(m83) {};    		\\
+	\\
+	};
+	\node[rect, inner sep=0pt ] (outer) [fit=(m52) (m53),text width=19em] {Confidence Calculation};
+	\node[group, outer sep=0em, label=above left:{\textbf{ASL}} ] (outer) [fit=(m11) (m13) (m41) (m43),text width=30em] {};
+	\node[group, outer sep=0em, label=above:{\textbf{Post-Processing}} ] (outer) [fit=(m51) (m53) (m71) (m73),text width=30em] {};
+
+	\draw[line] (m02) -- node [right]  {$x(n)$} (m12);
+	\draw[line2] (m12) -- node [right]  {$X(l,b)$} (m22);
+	\draw[line] (m22.north) -| (m31.north);
+	\draw[line] (m22.north) -| (m33.north);
+	\draw[line] ([xshift=-1em]m31.south) -- node [right]  {$P(l,b,\theta)$} ([xshift=-1em]m41.north);
+	\draw[line] ([xshift=1em]m31.south) -- ([xshift=-1em]m43.north);
+	\draw[line] ([xshift=1em]m33.south) -- node [left]  {$P(l,b,\theta)$}([xshift=1em]m43.north);
+	\draw[line] ([xshift=-1em]m33.south) --  ([xshift=1em]m41.north);
+	\draw[line] ([xshift=-0.6em, yshift=-0.5em]m51.west) --  ([xshift=-4em, yshift=-0.5em]m52.west);
+	\draw[line2] ([xshift=1em]m41.south) -- ([xshift=1em, yshift=0.5em]m51.center);
+	\draw[line] ([xshift=1em, yshift=0.5em]m51.center) -- ([xshift=-4em, yshift=0.5em]m52.west);
+	\draw[line] ([xshift=-1em]m43.south) -- ([xshift=-1em]m53.north);
+	\draw[line] ([xshift=1em]m43.south) -- node [right]  {$\phih(b)$}([xshift=1em]m53.north);
+	\draw[line] ([xshift=-1em]m41.south) -- node [left, yshift=3.3em]  {$\phih(l,b)$} ([xshift=-1em]m71.north);
+	\draw[line] ([xshift=-1em]m52.south) -- ([xshift=-1em]m72.north);
+	\draw[line] ([xshift=1em]m52.south) -- node [right, yshift=0.6em]  {$\phih(b)$} node [right, yshift=-0.6em]  {$c(b)$} ([xshift=1em]m72.north);
+	\draw[line] ([xshift=-1em]m53.south) -- ([xshift=-1em]m73.north);
+	\draw[line] ([xshift=1em]m53.south) -- node [right, yshift=0.6em]  {$\phih(b)$} node [right, yshift=-0.6em]  {$c(b)$} ([xshift=1em]m73.north);
+	\draw[line]([xshift=-1em]m71.south) -- node [right, yshift=0.3em]  {$\lambda(b)$}([xshift=-2em]m82.north);
+	\draw[line]([xshift=-1em]m72.south) -- ([xshift=-.5em]m82.north);
+	\draw[line]([xshift=1em]m72.south) -- node [right]  {$\lambda(b)$}([xshift=0.5em]m82.north);
+	\draw[line]([xshift=-1em]m73.south) -- ([xshift=1.5em]m82.north);
+	\draw[line]([xshift=1em]m73.south) --  node [right, yshift=-0.5em]  {$\lambda(b)$}([xshift=3em]m82.north);
+	\draw[line](m81.east) -- (m82.west);
+  \end{tikzpicture}

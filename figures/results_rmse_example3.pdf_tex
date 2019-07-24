@@ -1,0 +1,88 @@
+%% Creator: Inkscape inkscape 0.92.2, www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'results_rmse_example3.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%%
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{345bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,0.82608696)%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{results_rmse_example3.pdf}}%
+    \put(0.13695652,0.05971022){\makebox(0,0)[b]{\smash{0}}}%
+    \put(0.27360283,0.05971022){\makebox(0,0)[b]{\smash{5}}}%
+    \put(0.41024935,0.05971022){\makebox(0,0)[b]{\smash{10}}}%
+    \put(0.54689565,0.05971022){\makebox(0,0)[b]{\smash{15}}}%
+    \put(0.68354196,0.05971022){\makebox(0,0)[b]{\smash{20}}}%
+    \put(0.82018848,0.05971022){\makebox(0,0)[b]{\smash{25}}}%
+    \put(0.95683478,0.05971022){\makebox(0,0)[b]{\smash{30}}}%
+    \put(0.55760913,0.01637674){\makebox(0,0)[b]{\smash{Time $t$ [s]}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{results_rmse_example3.pdf}}%
+    \put(0.12536239,0.08608696){\makebox(0,0)[rb]{\smash{0}}}%
+    \put(0.12536239,0.26217391){\makebox(0,0)[rb]{\smash{90}}}%
+    \put(0.12536239,0.43826087){\makebox(0,0)[rb]{\smash{180}}}%
+    \put(0.12536239,0.61434783){\makebox(0,0)[rb]{\smash{270}}}%
+    \put(0.12536239,0.79043478){\makebox(0,0)[rb]{\smash{360}}}%
+    \put(0.04231891,0.44782652){\rotatebox{90}{\makebox(0,0)[b]{\smash{Azimuth Angle [$^{\circ}$]}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=3]{results_rmse_example3.pdf}}%
+    \put(0.24782609,0.75652174){\makebox(0,0)[lb]{\smash{ST1}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=4]{results_rmse_example3.pdf}}%
+    \put(0.24782609,0.72065217){\makebox(0,0)[lb]{\smash{ST2}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=5]{results_rmse_example3.pdf}}%
+    \put(0.24782609,0.68478261){\makebox(0,0)[lb]{\smash{ST3}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=6]{results_rmse_example3.pdf}}%
+    \put(0.24782609,0.64891304){\makebox(0,0)[lb]{\smash{ST4}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=7]{results_rmse_example3.pdf}}%
+    \put(0.24782609,0.61304348){\makebox(0,0)[lb]{\smash{ST5}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=8]{results_rmse_example3.pdf}}%
+    \put(0.24782609,0.57717391){\makebox(0,0)[lb]{\smash{FP}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=9]{results_rmse_example3.pdf}}%
+    \put(0.24782609,0.54130435){\makebox(0,0)[lb]{\smash{GT1}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=10]{results_rmse_example3.pdf}}%
+    \put(0.24782609,0.50543478){\makebox(0,0)[lb]{\smash{GT2}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=11]{results_rmse_example3.pdf}}%
+    \put(0.24782609,0.46956522){\makebox(0,0)[lb]{\smash{GT3}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=12]{results_rmse_example3.pdf}}%
+  \end{picture}%
+\endgroup%

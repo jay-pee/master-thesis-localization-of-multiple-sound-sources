@@ -1,0 +1,47 @@
+\titlehead{%
+ {\setlength{\unitlength}{1mm}
+  \begin{picture}(00,00)(+14,+7)
+	\put(53,5.5){\color[cmyk]{0.1,1,0.8,0}\linethickness{0.5mm}\line(130,0){130}}
+	\put(0,0){\includegraphics[scale=0.8]{layout/tu}}
+	\put(95,7){\makebox(90,30)[rb]{\makeatletter\includegraphics[scale=0.55]{\LoadPicture}}}
+  \end{picture}
+ }
+}
+
+%\titlehead{%
+%  \includegraphics[scale=0.8]{tu}
+%  \includegraphics[scale=0.6]{IfN_Logo}
+%}
+
+\begin{titlepage}
+\pdfbookmark[0]{Titel}{titelblatt}
+\makeatletter
+\@titlehead
+
+\sffamily
+\begin{center}
+\vskip35mm
+{\sffamily\Large\@subject}\par
+\vskip15mm
+{\titlefont\huge\@title\par}
+\vskip15mm
+{\Large\@author}\par
+{\large Matrikelnummer: \@matrikelnummer}\par
+\vskip10mm
+{\large\@date}\par
+\end{center}
+
+\vskip30mm{Technische Universität Braunschweig\\
+\@institut}\par
+\begin{tabular}{@{}ll@{}}
+Examiner:   & \@dozent \\
+Supervisor: & \@betreuer\\
+			& Maximilian Strake\\
+\end{tabular}
+
+
+\makeatother
+
+\end{titlepage}
+
+\endinput

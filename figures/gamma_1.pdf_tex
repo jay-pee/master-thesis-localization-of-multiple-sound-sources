@@ -1,0 +1,95 @@
+%% Creator: Inkscape inkscape 0.92.2, www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'gamma_1.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%% 
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{525bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,0.47142857)%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{gamma_1.pdf}}%
+    \put(0.09142857,0.08780957){\makebox(0,0)[b]{\smash{0}}}%
+    \put(0.18714286,0.08780957){\makebox(0,0)[b]{\smash{90}}}%
+    \put(0.28285714,0.08780957){\makebox(0,0)[b]{\smash{180}}}%
+    \put(0.37857143,0.08780957){\makebox(0,0)[b]{\smash{270}}}%
+    \put(0.47428571,0.08780957){\makebox(0,0)[b]{\smash{360}}}%
+    \put(0.28285729,0.05933329){\makebox(0,0)[b]{\smash{Azimuth Angle $\phih$ [$^\circ$]}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{gamma_1.pdf}}%
+    \put(0.08380957,0.10514286){\makebox(0,0)[rb]{\smash{0}}}%
+    \put(0.08380957,0.19014286){\makebox(0,0)[rb]{\smash{0.2}}}%
+    \put(0.08380957,0.27514286){\makebox(0,0)[rb]{\smash{0.4}}}%
+    \put(0.08380957,0.36014286){\makebox(0,0)[rb]{\smash{0.6}}}%
+    \put(0.08380957,0.44514286){\makebox(0,0)[rb]{\smash{0.8}}}%
+    \put(0.03780957,0.28142871){\rotatebox{90}{\makebox(0,0)[b]{\smash{PDF [\%]}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=3]{gamma_1.pdf}}%
+    \put(0.36571429,0.41285714){\makebox(0,0)[lb]{\smash{$p_1(\phih)$}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=4]{gamma_1.pdf}}%
+    \put(0.36571429,0.38928571){\makebox(0,0)[lb]{\smash{$p_2(\phih)$}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=5]{gamma_1.pdf}}%
+    \put(0.36571429,0.36571429){\makebox(0,0)[lb]{\smash{$p_{\text{GMM}}(\phih)$}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=6]{gamma_1.pdf}}%
+    \put(0.6,0.08780957){\makebox(0,0)[b]{\smash{0}}}%
+    \put(0.69571429,0.08780957){\makebox(0,0)[b]{\smash{90}}}%
+    \put(0.79142857,0.08780957){\makebox(0,0)[b]{\smash{180}}}%
+    \put(0.88714286,0.08780957){\makebox(0,0)[b]{\smash{270}}}%
+    \put(0.98285714,0.08780957){\makebox(0,0)[b]{\smash{360}}}%
+    \put(0.79142871,0.05933329){\makebox(0,0)[b]{\smash{Azimuth Angle $\phih$ [$^\circ$]}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=7]{gamma_1.pdf}}%
+    \put(0.592381,0.10514286){\makebox(0,0)[rb]{\smash{0}}}%
+    \put(0.592381,0.17314286){\makebox(0,0)[rb]{\smash{20}}}%
+    \put(0.592381,0.24114286){\makebox(0,0)[rb]{\smash{40}}}%
+    \put(0.592381,0.30914286){\makebox(0,0)[rb]{\smash{60}}}%
+    \put(0.592381,0.37714286){\makebox(0,0)[rb]{\smash{80}}}%
+    \put(0.592381,0.44514286){\makebox(0,0)[rb]{\smash{100}}}%
+    \put(0.546381,0.28142871){\rotatebox{90}{\makebox(0,0)[b]{\smash{Responsibilities [\%]}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=8]{gamma_1.pdf}}%
+    \put(0.90285714,0.41266143){\makebox(0,0)[lb]{\smash{$\gamma_1(\phih)$}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=9]{gamma_1.pdf}}%
+    \put(0.90285714,0.38876714){\makebox(0,0)[lb]{\smash{$\gamma_2(\phih)$}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=10]{gamma_1.pdf}}%
+    \put(0.26879698,0.01590227){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\small{(a)}}}}%
+    \put(0.77451128,0.01590227){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\small{(b)}}}}%
+  \end{picture}%
+\endgroup%

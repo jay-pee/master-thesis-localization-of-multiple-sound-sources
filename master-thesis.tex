@@ -1,0 +1,168 @@
+\documentclass[ifn,english,masterarbeit,pdf,cd]{unitext}
+
+%% Folgende Attribute müssen gesetzt werden:
+%%
+%%		- Dokumententyp (bachelorarbeit, projektarbeit, masterarbeit, studienarbeit, diplomarbeit, bericht, script)
+%%		- Das Institut (ifn, inf, ips, idb, iti, ida und eis)
+%%		- das Ausgabeformat (dvi, ps, pdf)
+%%		- die Sprache (german, english)
+%%		- Design der Titelseite (cd, titelseite, oder "nichts angeben")
+%%			-> cd: Titelseite kann selbst gestaltet werden über die Datei "titelseite.tex"
+%%			-> titelseite: Farbige Titelseite
+%%			-> "nichts angeben": Schwarz-Weiß Titelseite ohne Institutslogo
+%%
+%%-------------------------------------------
+%% Beispiel 1:  \documentclass[ips,german,bachelorarbeit,pdf]{unitext}
+%% Beispiel 2:  \documentclass[ips,german,bachelorarbeit,pdf,titelseite]{unitext}
+
+\usepackage[font={small}]{caption}
+\captionsetup[sub]{font=small}
+\usepackage{siunitx}
+\usepackage{tikz}
+\usepackage{verbatim}
+\usepackage{svg}
+\usepackage{amssymb}
+\usepackage{dsfont}
+\usepackage{bm}
+\usepackage[]{algorithm2e}
+\usepackage{graphicx}
+\usepackage{caption}
+
+\graphicspath{{./figures/}}
+
+\KOMAoptions{twoside=false}
+\usetikzlibrary{calc,trees,positioning,arrows,chains,shapes.geometric,%
+    decorations.pathreplacing,decorations.pathmorphing,shapes,%
+    matrix,shapes.symbols,dsp,chains,fit}
+\tikzset{
+>=stealth',
+  rect/.style={
+    rectangle,
+    rounded corners,
+    % fill=black!10,
+    draw=black, very thick,
+    text width=8em,
+    minimum height=3em,
+    text centered
+    },
+  group/.style={
+    rectangle,
+    rounded corners,
+    % fill=black!10,
+    draw=black, dashed, thick,
+    text width=8em,
+    minimum height=3em,
+    text centered
+    },
+  line/.style={draw, thick, ->},
+  line2/.style={draw, thick, -},
+  element/.style={
+    tape,
+    top color=white,
+    bottom color=blue!50!black!60!,
+    minimum width=8em,
+    draw=blue!40!black!90, very thick,
+    text width=10em,
+    minimum height=5em,
+    text centered,
+    on chain},
+  every join/.style={->, thick,shorten >=1pt},
+  decoration={brace},
+  tuborg/.style={decorate},
+  tubnode/.style={midway, right=2pt},
+  coordinate/.style={minimum height=3em,},
+}
+
+\newcommand{\mat}[1]{\mathbf{#1}}
+\newcommand{\vect}[1]{\underline{#1}}
+\newcommand{\ex}[1]{E\{#1\}}
+
+\makeatletter
+\newcommand{\oast}[2][0.1ex]{%
+  \mathrel{\mathop{#2}\limits^{
+    \vbox to#1{\kern-2\ex@
+    \hbox{$\scriptstyle*$}\vss}}}}
+\makeatother
+
+\DeclareMathAlphabet{\mathpzc}{OT1}{pzc}{m}{it}
+\newcommand{\z}{\mathpzc{z}}
+
+\newcommand{\phih}{\hat{\varphi}}
+
+% Todos
+\newcommand\todo[1]{\textcolor{red}{Todo: #1}}
+
+%% =====================================================
+%% ============ Dokumentendetails angeben ==============
+%% =====================================================
+%% title, author und date müssen angegeben werden
+%% dozent, betreuer und keywords sind optional.
+
+\title{Localization of Multiple Sound Sources}
+\author{Jan Philip Janssen}
+\matrikelnummer{4689492}
+\date{26.02.2018}						%Abgabedatum
+\dozent{Prof. Dr.-Ing. Tim Fingscheidt}
+\betreuer{Dr.-Ing. Tobias Wolff (Nuance Communications)}
+
+
+%% =====================================================
+%% ============= Bibliotheken einbinden ================
+%%  WICHTIG: Als Bibliothek muss Biber verwendet werden
+%% =====================================================
+\addbibresource{lit.bib}
+
+
+%% =====================================================
+%% ============ Optionale Abschnitte ===================
+%% =====================================================
+% \makeglossary           %%% Glosar anlegen
+\makeindex              %%% Index anlegen
+
+\begin{document}
+
+%% =====================================================
+%% ============ Benötigte Abschnitte ===================
+%% =====================================================
+%% 	Die zugehörigen TEX-Dateien befinden sich im Unterordner
+%%	"..\helper" und können - wenn nötig - geändert werden
+
+\titelblatt             			%%% Titelseites
+\erklaerung             			%%% Erklärung
+% \input{helper/02-vorwort}			%%% Vorwort (Optional!)
+% \input{helper/03-zusammenfassung}	%%% Kurzfassung/Abstract (Optional!)
+%\setcounter{tocdepth}{3}
+\tableofcontents        			%%% Inhaltsverzeichnis
+
+%% =====================================================
+%% ================= Verzeichnisse =====================
+%% =====================================================
+\listoftables           			%%% Tabellenverzeichnis (Optional!)
+\listoffigures         			 	%%% Abbildungsverzeichnis (Optional!)
+\abkuerzung             			%%% Abkürzungsverzeichnis (Optional!)
+\input{helper/05-symbols.tex}		%%% Symbolliste (Optional!)
+%% =====================================================
+%% ================= Der Hauptteil =====================
+%% =====================================================
+\starttext              %%% nicht ändern
+%% 	Die zugehörigen TEX-Dateien befinden sich im Unterordner
+%%	"..\tex". Hier können neue Kapitel angelegt und eingebunden werden
+
+\input{tex/01-chapter}
+\input{tex/02-chapter}
+\input{tex/03-chapter}
+\input{tex/04-chapter}
+
+%% =====================================================
+%% ================= Anhang ============================
+%% =====================================================
+%% 	Die zugehörigen TEX-Dateien befinden sich im Unterordner
+%%	"..\helper" und können - wenn nötig - geändert werden
+\printbibliography						%%% Literaturverzeichnis
+\input{helper/06-anhang}                %%% Anhang (Optional, ggf ändern)
+
+%\printglossary          				%%% GLosar (Optional!)
+%\printindex             				%%% Index (Optional!)
+
+
+\end{document}

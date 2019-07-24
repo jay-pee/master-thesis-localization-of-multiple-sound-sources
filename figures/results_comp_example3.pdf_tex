@@ -1,0 +1,82 @@
+%% Creator: Inkscape inkscape 0.92.2, www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'results_comp_example3.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%%
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{277.5bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,0.77027027)%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{results_comp_example3.pdf}}%
+    \put(0.16216216,0.07423432){\makebox(0,0)[b]{\smash{13}}}%
+    \put(0.32540514,0.07423432){\makebox(0,0)[b]{\smash{13.2}}}%
+    \put(0.48864838,0.07423432){\makebox(0,0)[b]{\smash{13.4}}}%
+    \put(0.65189216,0.07423432){\makebox(0,0)[b]{\smash{13.6}}}%
+    \put(0.81513541,0.07423432){\makebox(0,0)[b]{\smash{13.8}}}%
+    \put(0.97837838,0.07423432){\makebox(0,0)[b]{\smash{14}}}%
+    \put(0.57027027,0.02036027){\makebox(0,0)[b]{\smash{Time $t$ [s]}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{results_comp_example3.pdf}}%
+    \put(0.14774757,0.10702703){\makebox(0,0)[rb]{\smash{0}}}%
+    \put(0.14774757,0.26513513){\makebox(0,0)[rb]{\smash{90}}}%
+    \put(0.14774757,0.42324324){\makebox(0,0)[rb]{\smash{180}}}%
+    \put(0.14774757,0.73945946){\makebox(0,0)[rb]{\smash{360}}}%
+    \put(0.04450432,0.43513541){\rotatebox{90}{\makebox(0,0)[b]{\smash{Azimuth Angle [$^{\circ}$]}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=3]{results_comp_example3.pdf}}%
+    \put(0.82432432,0.69986811){\makebox(0,0)[lb]{\scriptsize\smash{ST1}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=4]{results_comp_example3.pdf}}%
+    \put(0.82432432,0.65505595){\makebox(0,0)[lb]{\scriptsize\smash{ST3}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=5]{results_comp_example3.pdf}}%
+    \put(0.82432432,0.61024378){\makebox(0,0)[lb]{\scriptsize\smash{ST4}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=6]{results_comp_example3.pdf}}%
+    \put(0.82432432,0.56543189){\makebox(0,0)[lb]{\scriptsize\smash{GT1}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=7]{results_comp_example3.pdf}}%
+    \put(0.82432432,0.52061973){\makebox(0,0)[lb]{\scriptsize\smash{GT2}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=8]{results_comp_example3.pdf}}%
+    \put(0.82432432,0.47580757){\makebox(0,0)[lb]{\scriptsize\smash{GT3}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=9]{results_comp_example3.pdf}}%
+    \put(0.14774757,0.58135135){\makebox(0,0)[rb]{\scriptsize\smash{270}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=10]{results_comp_example3.pdf}}%
+  \end{picture}%
+\endgroup%

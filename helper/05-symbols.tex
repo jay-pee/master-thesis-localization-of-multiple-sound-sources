@@ -1,0 +1,98 @@
+\chapter*{List of Symbols}
+
+\begin{tabular}{cp{0.6\textwidth}}
+  $M$ & number of  microphones \\
+  $Q$ & number of sources \\
+  $\vect{\breve{r}}_m$ & position of microphone $m$  \\
+%  $\breve{r}_{m,x}$ & position of microphone $m$, x-axis\\
+%  $\breve{r}_{m,y}$ & position of microphone $m$, y-axis  \\
+  $\vect {\oast r}_q$ & position of source $q$\\
+%  $\oast r_{q,x}$ & position of source $q$, x-axis \\
+%  $\oast r_{q,y}$ & position of source $q$, y-axis \\
+  $n$ & discrete time index \\
+  $x_m(n)$ & signal recorded by microphone $m$\\
+  $s_q(n)$ & signal emitted by source $q$ \\
+  $h_{mq}(n)$ & room impulse response between the q-th source and the m-th microphone \\
+  $v_m(n)$    & noise considered at microphone $m$ \\
+  $*$ & convolution operator\\
+  $(\cdot)^T$        & transpose operator\\
+%    & Variables in the frequency domain (from Fourier transform) in capital letters \\
+  $f$ & frequency \\
+  $f_s$ & sampling rate \\
+  $\Omega$ & normalized frequency \\
+  $X_m(\Omega)$ & signal recorded by microphone $m$\\
+%  $\vect X(\Omega)$ & recorded signal vector\\
+  $S_q(\Omega)$ & signal emitted by acoustic source $q$\\
+%  $\vect S(\Omega)$ & emitted signal vector\\
+  $H_{mq}(\Omega)$ & acoustic transfer function between the $q$'th source and the $m$'th microphone\\
+%  $\mat H(\Omega)$ & matrix of acoustic transfer function\\
+  $V_m(\Omega)$ & noise considered at microphone $m$\\
+%  $\vect V(\Omega)$ & noise vector\\
+%  $H_{Rq}(\Omega)$ & acoustic transfer function of reference microphone\\
+  $\vect A_q(\Omega)$ & propagation vector of source $q$\\
+%  $\mat A(\Omega)$ & transfer function matrix in regards to the reference point\\
+%  $\vect S'(\Omega)$ & the source signal multiplied with the transfer function between the microphones and the reference point\\
+  $r_0$ & reference point's position\\
+  $\tau_{mq}$     & time delay of a microphone position \\
+%  $\tau_{Rq}$     & time delay of the reference microphone \\
+  $\Delta\tau_{mq}$ & TDOA = difference between time delays\\
+
+  $\varphi$       & angle representing the \ac{DOA} in the assimuth plane\\
+  $c$             & speed of sound \\
+  $E\{\cdot\}$    & expectation value operator \\
+  $(\cdot)^*$            & complex conjugate operator \\
+  $(\cdot)^H$    & Hermitean operator\\
+  $\mat \Phi_{ss}(\Omega)$  & source correlation matrix \\
+  $\mat \Phi_{vv}(\Omega)$  & noise correlation matrix \\
+\end{tabular}
+
+
+\begin{tabular}{cp{0.6\textwidth}}
+
+  $\vect A_q^{\text{ff}}$   & propagation vector function in free field model \\
+  $j$ &  imaginary unit \\
+  $\mat \Phi_{xx}(\Omega)$  & spatial covariance matrix \\
+%  $\Phi^q_{ss}(\Omega)$     & covariance matrix of the q ’th source signal \\
+  $Y(\Omega)$           & output signal of the beamformer \\
+  $\phi_{yy}$           & power of output signal \\
+  $\vect W(\Omega)$     & vector of beamformer filter weights \\
+  $\vect D(\theta)$     & steering vector \\
+  $\theta$              & steering direction, azimuth angle   \\
+  $P(\Omega,\theta)$ & steered power\\
+  $\overline{P}^\text{b}(\theta)$   & average of steered power over frequencies \\
+  $\epsilon$            & small additive component \\
+  $\mat I$     & the unit matrix  \\
+  $\mat J_{xx}(\Omega)$     & coherence matrix \\
+  $l$     & is the discrete frequency bin \\
+  $\mathcal{W}(n)$ & the window function\\
+  $O$     & frameshift in samples \\
+  $b$     & frame index \\
+  $L$     & STFT window length\\
+  $N_E$   & number of samples \\
+  $\hat \varphi$  & DOA estimate \\
+  $\alpha$    & smoothing constant\\
+  $\mathcal{N}(\hat{\varphi}|\mu,\sigma)$   & single Gaussian \ac{PDF}\\
+  $K$       & number of Gaussians \\
+  $\sigma$  & standard deviation \\
+  $\mu$     & mean of the Gaussian\\
+  $\pi$ & mixing coefficients \\
+  $N_k$     & the number of observations of class $k$ \\
+  $p_\text{GMM}(\vect{\hat{\varphi}}|\vect \pi,\vect \mu,\vect \sigma) $  & joint likelihood for observations  $\vect {\hat \varphi}$ given the \acs{GMM} parameter\\
+  $p_k(\phih)$  & single Gaussian \ac{PDF} of class $k$ \\
+  $\gamma_{kn}$   & responsibilities of observation $n$ to class $k$\\
+  $\Gamma$ & threshold parameter\\
+  $c(l,b)$   & confidence value \\
+  $\vect \lambda$  & all parameter of the \acs{GMM}\\
+  $\mu_\text{v}$  & sensitivity for confidence calculation \\
+  $\alpha_\text{o}$ & offset for confidence calculation \\
+  $\beta$ & \acs{MAP}-adaption parameter\\
+  $b_\text{TTL}$ & \acl{TTL} variable\\
+  % Subscripts
+% m=m'th node influence coefficient
+% n=n th source (or duct mode)
+% X, Y, Z = shape functions of space derivatives
+%
+%
+  % Superscripts
+% I= pseudoinverse matrix element
+\end{tabular}

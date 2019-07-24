@@ -1,0 +1,79 @@
+%% Creator: Inkscape inkscape 0.92.2, www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'eval_1_1.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%% 
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{315.75bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,0.79334917)%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{eval_1_1.pdf}}%
+    \put(0.13064133,0.05811568){\makebox(0,0)[b]{\smash{0}}}%
+    \put(0.30499121,0.05811568){\makebox(0,0)[b]{\smash{20}}}%
+    \put(0.47934109,0.05811568){\makebox(0,0)[b]{\smash{40}}}%
+    \put(0.65369097,0.05811568){\makebox(0,0)[b]{\smash{60}}}%
+    \put(0.82804086,0.05811568){\makebox(0,0)[b]{\smash{80}}}%
+    \put(0.53087933,0.01076793){\makebox(0,0)[b]{\smash{Time [s]}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{eval_1_1.pdf}}%
+    \put(0.11797316,0.08693587){\makebox(0,0)[rb]{\smash{0}}}%
+    \put(0.11797316,0.24608076){\makebox(0,0)[rb]{\smash{90}}}%
+    \put(0.11797316,0.40522565){\makebox(0,0)[rb]{\smash{180}}}%
+    \put(0.11797316,0.56437055){\makebox(0,0)[rb]{\smash{270}}}%
+    \put(0.11797316,0.72351544){\makebox(0,0)[rb]{\smash{360}}}%
+    \put(0.02723682,0.4156772){\rotatebox{90}{\makebox(0,0)[b]{\smash{Azimuth Angle $\varphi$ [$^{\circ}$]}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=3]{eval_1_1.pdf}}%
+    \put(0.27315914,0.6303342){\makebox(0,0)[lb]{\tiny\smash{FP}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=4]{eval_1_1.pdf}}%
+    \put(0.27315914,0.59095059){\makebox(0,0)[lb]{\tiny\smash{ST3}}}%
+    \put(0.27198877,0.66928365){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\tiny\smash{ST1}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=5]{eval_1_1.pdf}}%
+    \put(0.27315914,0.55156722){\makebox(0,0)[lb]{\tiny\smash{ST5}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=6]{eval_1_1.pdf}}%
+    \put(0.27315914,0.51218361){\makebox(0,0)[lb]{\tiny\smash{ST6}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=7]{eval_1_1.pdf}}%
+    \put(0.27315914,0.4728){\makebox(0,0)[lb]{\tiny\smash{GT1}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=8]{eval_1_1.pdf}}%
+  \end{picture}%
+\endgroup%

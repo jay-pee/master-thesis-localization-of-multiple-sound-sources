@@ -1,0 +1,84 @@
+\begin{tikzpicture}
+
+	\matrix (m1) [row sep=10mm, column sep=7mm]
+	{
+		\node[dspnodeopen]         		   	(m00) {$s_1(n)$};  		&
+		\node[dspfilter,minimum width=1.4cm]	(m01) {$h_{mq}(n)$}; 	&
+		\node[coordinate]                   (m02) {};          		&
+		\node[coordinate]                   (m03) {};          		&
+		\node[coordinate]                  	(m04) {};				&
+		\node[coordinate]                  	(m05) {};				\\
+		%--------------------------------------------------------------------
+		\node                 				(m10) {$\cdots$};  &
+		\node 			                  	(m11) {$\cdots$};  &
+		\node[dspadder]                  	(m12) {};          &
+		\node[dspnodeopen, dsp/label=above] (m13) {$v_m(n)$};  &
+		\node[coordinate]                  	(m14) {};          \\
+		%--------------------------------------------------------------------
+		\node[dspnodeopen]         		   	(m20) {$s_Q(n)$};  		&
+		\node[dspfilter,minimum width=1.4cm]	(m21) {$h_{mQ}(n)$}; 	&
+		\node[dspadder]                    	(m22) {};          		&
+		\node[dspadder]                    	(m23) {};          		&
+		\node[dspmultiplier]			   	(m24) {};  %dsp/label=belo
+		\draw [line width=0.25mm]
+		([yshift=8pt]m24.west) -- ([yshift=-8pt]m24.west); 			&
+		\node[dspnodeopen] 	     		 	(m25) {$x_m(n)$}; 		\\
+		%--------------------------------------------------------------------
+\\
+		% \node[coordinate]                  (m11) {};          &
+		% \node[dspmixer, dsp/label=right]   (m12) {$h[0]$};    &
+		% \node[coordinate]                  (m13) {};          &
+		% \node[dspmixer, dsp/label=right]   (m14) {$h[1]$};    &
+		% \node[coordinate]                  (m15) {};          &
+		% \node[dspmixer, dsp/label=right]   (m16) {$h[2]$};    &
+		% \node[coordinate]                  (m17) {};          &
+		% \node[dspmixer, dsp/label=right]   (m18) {$h[3]$};    &
+		% \node[coordinate]                  (m19) {};          &
+		% \node[coordinate]                  (m1X) {};          \\
+		% %--------------------------------------------------------------------
+		% \\
+		% %--------------------------------------------------------------------
+		% \node[coordinate]                  (m20) {};          &
+		% \node[coordinate]                  (m21) {};          &
+		% \node[coordinate]                  (m22) {};          &
+		% \node[coordinate]                  (m23) {};          &
+		% \node[dspadder]                    (m24) {};          &
+		% \node[coordinate]                  (m25) {};          &
+		% \node[dspadder]                    (m26) {};          &
+		% \node[coordinate]                  (m27) {};          &
+		% \node[dspadder]                    (m28) {};          &
+		% \node[coordinate]                  (m29) {};          &
+		% \node[dspnodeopen,dsp/label=above] (m2X) {$y(n)$};    \\
+		% %--------------------------------------------------------------------
+	};
+
+	% \matrix (m1) [row sep=2.5mm, column sep=5mm]
+	% {
+
+
+	%--------------------------------------------------------------------
+
+		%
+		% \node[dspmultiplier,right=of c1,dsp/label=below] (c2) {}; &
+		% \draw [line width=0.25mm] ([yshift=8pt]c2.west) -- ([yshift=-8pt]c2.west); &
+		% \node[dspnodeopen,right= of c2] 	     		 (c3) {$y_m(n)$}; \\
+
+
+	% };
+	% \foreach \i [evaluate = \i as \j using int(\i+1)] in {0,1,...,4}
+	% 	\draw[dspconn] (m2\i) -- (m2\j);
+	% \foreach \i [evaluate = \i as \j using int(\i+1)] in {0,1}
+	% 	\draw[dspconn] (m0\i) -- (m0\j);
+	% 	\draw[dspconn] (m02) -- (m12);
+	\draw[dspconn] (m00) -- (m01);
+	\draw[dspconn] (m01) -| (m12);
+	% \draw[dspconn] (m02) -- (m12);
+	\draw[dspconn] (m11) -- (m12);
+	\draw[dspconn] (m12) -- (m22);
+	\draw[dspconn] (m13) -- (m23);
+	\draw[dspconn] (m20) -- (m21);
+	\draw[dspconn] (m21) -- (m22);
+	\draw[dspconn] (m22) -- (m23);
+	\draw[dspconn] (m23) -- (m24);
+	\draw[dspconn] (m24) -- (m25);
+\end{tikzpicture}

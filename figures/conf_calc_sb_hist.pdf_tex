@@ -1,0 +1,74 @@
+%% Creator: Inkscape inkscape 0.92.2, www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'conf_calc_sb_hist.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%% 
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{340.5bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,0.83700441)%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{conf_calc_sb_hist.pdf}}%
+    \put(0.13436123,0.06049934){\makebox(0,0)[b]{\smash{0}}}%
+    \put(0.30528634,0.06049934){\makebox(0,0)[b]{\smash{0.2}}}%
+    \put(0.47621145,0.06049934){\makebox(0,0)[b]{\smash{0.4}}}%
+    \put(0.64713656,0.06049934){\makebox(0,0)[b]{\smash{0.6}}}%
+    \put(0.81806167,0.06049934){\makebox(0,0)[b]{\smash{0.8}}}%
+    \put(0.98898678,0.06049934){\makebox(0,0)[b]{\smash{1}}}%
+    \put(0.56167445,0.01659317){\makebox(0,0)[b]{\smash{Confidence $c$ [\%]}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{conf_calc_sb_hist.pdf}}%
+    \put(0.12261388,0.08722467){\makebox(0,0)[rb]{\smash{0}}}%
+    \put(0.12261388,0.1592511){\makebox(0,0)[rb]{\smash{0.5}}}%
+    \put(0.12261388,0.23127753){\makebox(0,0)[rb]{\smash{1}}}%
+    \put(0.12261388,0.30330396){\makebox(0,0)[rb]{\smash{1.5}}}%
+    \put(0.12261388,0.3753304){\makebox(0,0)[rb]{\smash{2}}}%
+    \put(0.12261388,0.44735683){\makebox(0,0)[rb]{\smash{2.5}}}%
+    \put(0.12261388,0.51938326){\makebox(0,0)[rb]{\smash{3}}}%
+    \put(0.12261388,0.59140969){\makebox(0,0)[rb]{\smash{3.5}}}%
+    \put(0.12261388,0.66343612){\makebox(0,0)[rb]{\smash{4}}}%
+    \put(0.12261388,0.73546255){\makebox(0,0)[rb]{\smash{4.5}}}%
+    \put(0.12261388,0.80748899){\makebox(0,0)[rb]{\smash{5}}}%
+    \put(0.03847291,0.4570489){\rotatebox{90}{\makebox(0,0)[b]{\smash{Count [n] $10^5$}}}}%
+  \end{picture}%
+\endgroup%

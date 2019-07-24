@@ -1,0 +1,55 @@
+\begin{tikzpicture}
+	[
+  	coordinate/.style={minimum height=1em,},
+	]
+
+	\matrix (m1) [row sep=2mm, column sep=20mm]
+	{
+		\node[dspmultiplier]			   	(m00) {};  %dsp/label=belo
+		\draw [line width=0.25mm] 
+		([yshift=8pt]m00.west) -- ([yshift=-8pt]m00.west); 			&
+		\node[dspfilter, minimum width=20mm]					(m01) {$W_{1}(\Omega)$}; 	&
+		\node[coordinate]                   (m02) {};          		&
+		\node[coordinate]                   (m03) {};          		\\
+		%--------------------------------------------------------------------
+		\node[dspmultiplier]			   	(m10) {};  %dsp/label=belo
+		\draw [line width=0.25mm] 
+		([yshift=8pt]m10.west) -- ([yshift=-8pt]m10.west); 			&
+		\node[dspfilter, minimum width=20mm]					(m11) {$W_{2}(\Omega)$};	&
+		\node[coordinate]                   (m12) {};          		&
+		\node[coordinate]                   (m13) {};          		\\
+
+		% %--------------------------------------------------------------------
+		\node[coordinate]                   (m20) {}; 				&
+		\node[coordinate]                   (m21) {}; 				&
+		\node[dspadder]                   	(m22) {}; 				&
+		\node[dspnodeopen] 	     		 	(m23) {$Y(\Omega)$}; 		\\
+
+		% %--------------------------------------------------------------------
+		\node[dspmultiplier]			   	(m30) {};  %dsp/label=belo
+		\draw [line width=0.25mm] 
+		([yshift=8pt]m30.west) -- ([yshift=-8pt]m30.west); 			&
+		\node[dspfilter, minimum width=20mm]					(m31) {$W_{M-1}(\Omega)$}; 	&
+		\node[coordinate]                   (m32) {};          		&
+		\node[coordinate]                   (m33) {};          		\\
+		% %--------------------------------------------------------------------
+		\node[dspmultiplier]			   	(m40) {};  %dsp/label=belo
+		\draw [line width=0.25mm] 
+		([yshift=8pt]m40.west) -- ([yshift=-8pt]m40.west); 			&
+		\node[dspfilter, minimum width=20mm]					(m41) {$W_{M}(\Omega)$}; 	&
+		\node[coordinate]                   (m42) {};          		&
+		\node[coordinate]                   (m43) {};          		\\
+		\\
+	};
+	\draw[dspflow] (m00) -- node [above]  {$X_1(\Omega)$} (m01);
+	\draw[dspconn] (m01.east) -- (m22);
+	\draw[dspflow] (m10) -- node [above]  {$X_2(\Omega)$} (m11);
+	\draw[dspconn] (m11.east) -- (m22);
+	% \draw[dspconn] (m20) -- (m21);
+	% \draw[dspconn] (m21.east) -- (m22);
+	\draw[dspconn] (m22) --   (m23);
+	\draw[dspflow] (m30) -- node [above]  {$X_{M-1}(\Omega)$}(m31);
+	\draw[dspconn] (m31.east) -- (m22);
+	\draw[dspflow] (m40) -- node [above]  {$X_{M}(\Omega)$}(m41);
+	\draw[dspconn] (m41.east) -- (m22);
+\end{tikzpicture}

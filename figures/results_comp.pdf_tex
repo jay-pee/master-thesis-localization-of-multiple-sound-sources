@@ -1,0 +1,68 @@
+%% Creator: Inkscape inkscape 0.92.2, www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'results_comp.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%% 
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{266.25bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,0.84507042)%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{results_comp.pdf}}%
+    \put(0.12084569,0.06130307){\rotatebox{30}{\makebox(0,0)[b]{\smash{BB D\&S}}}}%
+    \put(0.29175774,0.0613037){\rotatebox{30}{\makebox(0,0)[b]{\smash{BB CAP}}}}%
+    \put(0.46112739,0.06130307){\rotatebox{30}{\makebox(0,0)[b]{\smash{SB D\&S}}}}%
+    \put(0.63203943,0.06130371){\rotatebox{30}{\makebox(0,0)[b]{\smash{SB CAP}}}}%
+    \put(0.80157,0.06134619){\rotatebox{30}{\makebox(0,0)[b]{\smash{Madhu}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{results_comp.pdf}}%
+    \put(0.12582169,0.20732394){\makebox(0,0)[rb]{\smash{0}}}%
+    \put(0.12582169,0.32169014){\makebox(0,0)[rb]{\smash{20}}}%
+    \put(0.12582169,0.43605634){\makebox(0,0)[rb]{\smash{40}}}%
+    \put(0.12582169,0.55042253){\makebox(0,0)[rb]{\smash{60}}}%
+    \put(0.12582169,0.66478873){\makebox(0,0)[rb]{\smash{80}}}%
+    \put(0.12582169,0.77915493){\makebox(0,0)[rb]{\smash{100}}}%
+    \put(0.04075127,0.50563408){\rotatebox{90}{\makebox(0,0)[b]{\smash{Completeness [\%]}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=3]{results_comp.pdf}}%
+  \end{picture}%
+\endgroup%

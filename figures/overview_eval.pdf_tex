@@ -1,0 +1,77 @@
+%% Creator: Inkscape inkscape 0.92.2, www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'overview_eval.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%%
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{595.27559055bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,1.41428571)%
+    \put(0.18358845,0.68395691){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{asd}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{overview_eval.pdf}}%
+    \put(0.53096651,1.24192176){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Micsignals $\vect x[n]$}}}%
+    \put(0.47337022,1.13752836){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{STFT}}}%
+    \put(0.53456632,1.07453232){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Transformed Micsignals $\vect X[l,b]$ }}}%
+    \put(0.26638323,0.95393996){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Delay \& Sum BF}}}%
+    \put(0.62276074,0.95753969){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Capon BF}}}%
+    \put(0.28978173,0.7649518){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{SRP Sub-band}}}%
+    \put(0.58094228,0.7628362){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{SRP-PHAT Broadband}}}%
+    \put(0.10291787,0.57356175){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Conf Calculation}}}%
+    \put(0.78586186,0.57666488){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Conf Calculation}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{overview_eval.pdf}}%
+    \put(0.29908734,0.39072258){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Madhu}}}%
+    \put(0.42602041,0.39094093){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Dev. Alg. Sub-band}}}%
+    \put(0.61815752,0.39317758){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Dev. Alg. Broadband}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=3]{overview_eval.pdf}}%
+    \put(0.48363059,0.11963501){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Evaluation}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=4]{overview_eval.pdf}}%
+    \put(0.13679137,1.02773528){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{ASL}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=5]{overview_eval.pdf}}%
+    \put(0.09179422,0.44817178){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Multi-source classification}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=6]{overview_eval.pdf}}%
+    \put(0.15479024,0.13031166){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Ground truth generation}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=7]{overview_eval.pdf}}%
+  \end{picture}%
+\endgroup%

@@ -1,0 +1,78 @@
+%% Creator: Inkscape inkscape 0.92.2, www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'results_rmse_example2.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%%
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{340.5bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,0.83700441)%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{results_rmse_example2.pdf}}%
+    \put(0.47665923,0.00516145){\makebox(0,0)[b]{\smash{Time $t$ [s]}}}%
+    \put(0.12900835,0.07579295){\makebox(0,0)[rb]{\smash{0}}}%
+    \put(0.12900835,0.25530837){\makebox(0,0)[rb]{\smash{90}}}%
+    \put(0.12900835,0.43482379){\makebox(0,0)[rb]{\smash{180}}}%
+    \put(0.12900835,0.61433921){\makebox(0,0)[rb]{\smash{270}}}%
+    \put(0.12900835,0.79385463){\makebox(0,0)[rb]{\smash{360}}}%
+    \put(0.04486737,0.44451587){\rotatebox{90}{\makebox(0,0)[b]{\smash{Azimuth Angle $\hat \varphi$ [$^\circ$]}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{results_rmse_example2.pdf}}%
+    \put(0.96469117,0.07667401){\makebox(0,0)[rb]{\smash{0}}}%
+    \put(0.99993346,0.22028634){\makebox(0,0)[rb]{\smash{0.2}}}%
+    \put(0.99993346,0.36389868){\makebox(0,0)[rb]{\smash{0.4}}}%
+    \put(0.99993346,0.50751101){\makebox(0,0)[rb]{\smash{0.6}}}%
+    \put(0.99993346,0.65112333){\makebox(0,0)[rb]{\smash{0.8}}}%
+    \put(0.96909645,0.79473569){\makebox(0,0)[rb]{\smash{1}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=3]{results_rmse_example2.pdf}}%
+    \put(0.13522601,0.04907031){\makebox(0,0)[b]{\smash{0}}}%
+    \put(0.24773901,0.04907031){\makebox(0,0)[b]{\smash{5}}}%
+    \put(0.36025225,0.04907031){\makebox(0,0)[b]{\smash{10}}}%
+    \put(0.47276524,0.04907031){\makebox(0,0)[b]{\smash{15}}}%
+    \put(0.58527846,0.04907031){\makebox(0,0)[b]{\smash{20}}}%
+    \put(0.69779145,0.04907031){\makebox(0,0)[b]{\smash{25}}}%
+    \put(0.81030445,0.04907031){\makebox(0,0)[b]{\smash{30}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=4]{results_rmse_example2.pdf}}%
+    \put(0.20062763,0.12935205){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{caused by aliaisng}}}%
+  \end{picture}%
+\endgroup%
