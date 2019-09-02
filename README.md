@@ -1,8 +1,16 @@
 # Master Thesis: Localization of Multiple Sound Sources
 
-With this repository I want to publish my master thesis and progress to improve it.
+With the help of this repository I want to publish my master thesis and progress to improve it over time.
 
-# Licence
+## Abstract
+
+This work focuses on acoustic localization and tracking of sound sources in noisy environments. In particular, a computationally efficient multi-source localization algorithm is described. As raw 
+direction of arrival (DOA) estimates typically suffer from environmental noise and reverberation, the proposed method represents the observed DOA data from a given core localizer using a Gaussian Mixture Model (GMM). The model parameters are estimated using the Expectation-Maximization algorithm with maximum a-posteriori adaptation. A wrapped GMM is used to support circular array geometries. Furthermore, confidence information about the raw input data is exploited for robust data classification. The proposed method can be applied to both broadband and spectral DOA estimates. Priors for spatial aliasing are introduced in the case of spectral input data. An extensive analysis verifies the approach for different core localizers and compares it to a known GMM based method. 
+
+**Keywords:** acoustic signal processing, speaker localization, multiple sources, classification, acoustic scene analysis
+
+
+## Licence
 
 The latex template is property of Technische Universität Braunschweig. Licence is unknown.
 
