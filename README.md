@@ -2,7 +2,7 @@
 
 With the help of this repository I want to publish my master thesis and progress to improve it over time.  
 
-Full Compiled PDF can be found [here](https://github.com/jay-pee/master-thesis-localization-of-multiple-sound-sources/blob/master/master-thesis.pdf).
+Full compiled PDF can be found [here](https://github.com/jay-pee/master-thesis-localization-of-multiple-sound-sources/blob/master/master-thesis.pdf).
 
 ## Abstract
 
